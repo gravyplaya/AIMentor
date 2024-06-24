@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">AImentor</string>
+    <string name="title_activity_main">AImentor</string>
+    <string name="package_name">com.tavonni.AImentor</string>
+    <string name="custom_url_scheme">com.tavonni.AImentor</string>
+</resources>

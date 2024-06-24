@@ -12,11 +12,15 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@capacitor/app": "6.0.0",
-    "@capacitor/core": "6.0.0",
-    "@capacitor/haptics": "6.0.0",
-    "@capacitor/keyboard": "6.0.0",
+    "@capacitor/android": "^6.1.0",
+    "@capacitor/app": "^6.0.0",
+    "@capacitor/core": "^6.1.0",
+    "@capacitor/haptics": "^6.0.0",
+    "@capacitor/ios": "^6.1.0",
+    "@capacitor/keyboard": "^6.0.0",
+    "@capacitor/local-notifications": "^6.0.0",
     "@capacitor/status-bar": "6.0.0",
+    "@clerk/clerk-react": "^5.2.4",
     "@ionic/react": "^8.0.0",
     "@ionic/react-router": "^8.0.0",
     "@types/react-router": "^5.1.20",
@@ -25,7 +29,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router": "^5.3.4",
-    "react-router-dom": "^5.3.4"
+    "react-router-dom": "^5.3.4",
+    "swiper": "^11.1.4"
   },
   "devDependencies": {
     "@capacitor/cli": "6.0.0",
@@ -44,6 +49,7 @@
     "terser": "^5.4.0",
     "typescript": "^5.1.6",
     "vite": "^5.0.0",
+    "vite-plugin-pwa": "^0.20.0",
     "vitest": "^0.34.6"
   },
   "description": "An Ionic project"
