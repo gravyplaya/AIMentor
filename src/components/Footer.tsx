@@ -4,6 +4,8 @@ import {
   IonToolbar,
   IonButton,
   IonButtons,
+  IonFooter,
+  IonText,
 } from "@ionic/react";
 import SignUpSignIn from "./SignUpSignIn";
 import CurrentTime from "./Time";
@@ -14,19 +16,15 @@ interface ContainerProps {
   name: string;
 }
 
-const Header: React.FC<ContainerProps> = ({ name }) => {
+const Footer: React.FC<ContainerProps> = ({ name }) => {
   return (
-    <IonHeader>
+    <IonFooter>
       <IonToolbar>
-        <IonButtons slot="end">
-          <CurrentTime />
-          <IonButton>
-            <SignUpSignIn />
-          </IonButton>
-        </IonButtons>
+        <IonText slot="start">@2024, All Rights Reserved</IonText>
+        <IonText slot="end">Powered by Provision Academy</IonText>
       </IonToolbar>
-    </IonHeader>
+    </IonFooter>
   );
 };
 
-export default Header;
+export default Footer;

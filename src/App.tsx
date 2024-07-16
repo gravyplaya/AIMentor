@@ -10,12 +10,7 @@ import {
   setupIonicReact,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { ellipse, square, triangle } from "ionicons/icons";
-import Home from "./pages/Home";
-import Daily from "./pages/Daily";
-import Messages from "./pages/Messages";
-import Personal from "./pages/Personal";
-import Vision from "./pages/Vision";
+import VerticalTabs from "./components/VerticalTabs";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -40,9 +35,9 @@ import "@ionic/react/css/display.css";
  * https://ionicframework.com/docs/theming/dark-mode
  */
 
-/* import '@ionic/react/css/palettes/dark.always.css'; */
+import "@ionic/react/css/palettes/dark.always.css";
 /* import '@ionic/react/css/palettes/dark.class.css'; */
-import "@ionic/react/css/palettes/dark.system.css";
+// import "@ionic/react/css/palettes/dark.system.css";
 
 /* Theme variables */
 import "./theme/variables.css";
@@ -51,52 +46,8 @@ setupIonicReact();
 
 const App: React.FC = () => (
   <IonApp>
-
     <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
-          <Route exact path="/home">
-            <Home />
-          </Route>
-          <Route path="/messages">
-            <Messages />
-          </Route>
-          <Route exact path="/daily">
-            <Daily />
-          </Route>
-          <Route exact path="/personal">
-            <Personal />
-          </Route>
-          <Route exact path="/vision">
-            <Vision />
-          </Route>
-          <Route exact path="/">
-            <Redirect to="/home" />
-          </Route>
-        </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="home" href="/home">
-            <IonIcon aria-hidden="true" icon={triangle} />
-            <IonLabel>Home</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="messages" href="/messages">
-            <IonIcon aria-hidden="true" icon={ellipse} />
-            <IonLabel>Messages</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="daily" href="/daily">
-            <IonIcon aria-hidden="true" icon={square} />
-            <IonLabel>Daily</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="personal" href="/personal">
-            <IonIcon aria-hidden="true" icon={square} />
-            <IonLabel>Personal</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="vision" href="/vision">
-            <IonIcon aria-hidden="true" icon={square} />
-            <IonLabel>Vision</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
+      <VerticalTabs />
     </IonReactRouter>
   </IonApp>
 );

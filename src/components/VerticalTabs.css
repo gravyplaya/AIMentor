@@ -1,0 +1,57 @@
+.vertical-tabs {
+  display: flex;
+  height: 100%;
+}
+
+.custom-tab-bar {
+  flex-direction: column;
+  width: 80px;
+  height: 100%;
+  border-right: 1px solid #333;
+  padding-bottom: 140px;
+  padding-top: 100px;
+  background: #000000;
+}
+.vertical-tabs-container {
+  display: flex;
+  height: 100%;
+}
+.logo-container {
+  padding: 20px;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  max-width: 50px;
+  max-height: 50px;
+}
+
+.tab-content {
+  padding: 20px;
+}
+ion-tab-button {
+  --padding-bottom: 5px;
+  --padding-top: 5px;
+  background: #000000;
+}
+@media (max-width: 767px) {
+  .vertical-tabs {
+    flex-direction: column-reverse;
+  }
+
+  .custom-tab-bar {
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-top: 1px solid #333;
+  }
+
+  .tab-content {
+    height: calc(100% - 56px);
+    overflow-y: auto;
+  }
+}

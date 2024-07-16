@@ -1,19 +1,43 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
-import './Personal.css';
-import Header from '../components/Header';
+import {
+  IonAccordion,
+  IonAccordionGroup,
+  IonContent,
+  IonItem,
+  IonLabel,
+  IonPage,
+} from "@ionic/react";
+import "./Personal.css";
 
 const Personal: React.FC = () => {
   return (
     <IonPage>
-<Header name="Personal"/>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Personal</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer name="Personal" />
+        <IonAccordionGroup>
+          <IonAccordion value="first">
+            <IonItem slot="header" color="light">
+              <IonLabel>First Accordion</IonLabel>
+            </IonItem>
+            <div className="ion-padding" slot="content">
+              First Content
+            </div>
+          </IonAccordion>
+          <IonAccordion value="second">
+            <IonItem slot="header" color="light">
+              <IonLabel>Second Accordion</IonLabel>
+            </IonItem>
+            <div className="ion-padding" slot="content">
+              Second Content
+            </div>
+          </IonAccordion>
+          <IonAccordion value="third">
+            <IonItem slot="header" color="light">
+              <IonLabel>Third Accordion</IonLabel>
+            </IonItem>
+            <div className="ion-padding" slot="content">
+              Third Content
+            </div>
+          </IonAccordion>
+        </IonAccordionGroup>
       </IonContent>
     </IonPage>
   );

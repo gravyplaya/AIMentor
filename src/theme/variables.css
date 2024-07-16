@@ -1,2 +1,21 @@
 /* For information on how to create your own theme, please see:
 http://ionicframework.com/docs/theming/ */
+@font-face {
+  font-family: "SpaceGrotesk";
+  src: url("../SpaceGrotesk-VariableFont_wght.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --ion-font-family: "SpaceGrotesk", sans-serif;
+  --ion-background-color: #000000;
+  --ion-background-color-rgb: 0, 0, 0;
+}
+ion-content,
+ion-toolbar {
+  --background: #000000;
+}
+h1 {
+  color: #ffffff;
+}

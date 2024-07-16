@@ -1,8 +1,7 @@
 import "./ExploreContainer.css";
 import { LocalNotifications } from '@capacitor/local-notifications';
-
-LocalNotifications.requestPermissions().then(permission => {
-  if (permission.granted) {
+LocalNotifications.requestPermissions().then(result => {
+  if (result.display === 'granted') {
     console.log('Permission granted, scheduling notification.');
 
 const notifs =  LocalNotifications.schedule({
