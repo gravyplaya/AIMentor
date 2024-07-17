@@ -26,8 +26,8 @@ import "./VerticalTabs.css";
 
 const VerticalTabs: React.FC = () => {
   return (
-    <div className="vertical-tabs-container">
-      <IonTabs className="vertical-tabs">
+    <div className="responsive-tabs-container">
+      <IonTabs className="responsive-tabs">
         <div className="logo-container">
           <IonImg src="/7days-logo.png" alt="Logo" className="logo" />
         </div>

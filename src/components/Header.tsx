@@ -20,9 +20,8 @@ const Header: React.FC<ContainerProps> = ({ name }) => {
       <IonToolbar>
         <IonButtons slot="end">
           <CurrentTime />
-          <IonButton>
-            <SignUpSignIn />
-          </IonButton>
+          {"  "}
+          <SignUpSignIn />
         </IonButtons>
       </IonToolbar>
     </IonHeader>

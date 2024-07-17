@@ -1,4 +1,4 @@
-.vertical-tabs {
+/* .vertical-tabs {
   display: flex;
   height: 100%;
 }
@@ -15,13 +15,76 @@
 .vertical-tabs-container {
   display: flex;
   height: 100%;
+} */
+
+.responsive-tabs {
+  display: flex;
+  height: 100%;
 }
+
+.custom-tab-bar {
+  display: flex;
+  background: #000000;
+  flex-shrink: 0; /* Prevents the tab bar from shrinking */
+}
+
+.responsive-tabs-container {
+  display: flex;
+  height: 100%;
+  width: 100%; /* Ensures the container takes full width */
+}
+
+/* Default styles for large screens (vertical tabs) */
+@media screen and (min-width: 768px) {
+  .responsive-tabs {
+    flex-direction: row;
+  }
+
+  .custom-tab-bar {
+    flex-direction: column;
+    width: 80px;
+    height: 75%;
+    border-right: 1px solid #333;
+    padding-bottom: 140px;
+    padding-top: 100px;
+  }
+
+  .responsive-tabs-container {
+    flex-direction: column;
+    width: calc(100% - 80px); /* Adjusts width based on tab bar */
+    margin-left: 80px; /* Pushes content to the right of tab bar */
+  }
+}
+
+/* Styles for mobile devices (horizontal tabs) */
+@media screen and (max-width: 767px) {
+  .responsive-tabs {
+    flex-direction: column;
+  }
+
+  .custom-tab-bar {
+    flex-direction: row;
+    width: 100%;
+    height: 60px; /* Adjust as needed */
+    border-bottom: 1px solid #333;
+    padding-left: 20px;
+    padding-right: 20px;
+    overflow-x: auto; /* Allow horizontal scrolling if needed */
+  }
+
+  .responsive-tabs-container {
+    flex-direction: column;
+    width: 100%; /* Full width on mobile */
+    margin-left: 0; /* Reset margin for mobile */
+  }
+}
+
 .logo-container {
   padding: 20px;
   background-color: #000;
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
 }
 
 .logo {
@@ -36,22 +99,4 @@ ion-tab-button {
   --padding-bottom: 5px;
   --padding-top: 5px;
   background: #000000;
-}
-@media (max-width: 767px) {
-  .vertical-tabs {
-    flex-direction: column-reverse;
-  }
-
-  .custom-tab-bar {
-    flex-direction: row;
-    width: 100%;
-    height: auto;
-    border-right: none;
-    border-top: 1px solid #333;
-  }
-
-  .tab-content {
-    height: calc(100% - 56px);
-    overflow-y: auto;
-  }
 }

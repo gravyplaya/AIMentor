@@ -7,6 +7,7 @@ import {
   UserButton,
   useUser,
 } from "@clerk/clerk-react";
+import { IonButton } from "@ionic/react";
 
 const SignUpSignIn: React.FC = () => {
   const { isSignedIn, user, isLoaded } = useUser();
@@ -14,7 +15,9 @@ const SignUpSignIn: React.FC = () => {
   return (
     <header>
       <SignedOut>
-        <SignInButton />
+        <SignInButton>
+          <IonButton>Sign In</IonButton>
+        </SignInButton>
       </SignedOut>
       <SignedIn>
         <UserButton />

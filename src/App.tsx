@@ -2,6 +2,7 @@ import { Redirect, Route } from "react-router-dom";
 import {
   IonApp,
   IonIcon,
+  IonImg,
   IonLabel,
   IonRouterOutlet,
   IonTabBar,
@@ -47,6 +48,9 @@ setupIonicReact();
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
+      <div className="logo-container">
+        <IonImg src="/7days-logo.png" alt="Logo" className="logo" />
+      </div>
       <VerticalTabs />
     </IonReactRouter>
   </IonApp>

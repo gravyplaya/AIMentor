@@ -55,6 +55,36 @@ const Home: React.FC = () => {
             </IonCol>
           </IonRow>
         </IonGrid>
+
+        <IonGrid>
+          <IonRow>
+            <IonCol>
+              <IonCard className="ion-text-center">
+                <h2 color="white">7 Days</h2>
+                <h3>Consistency</h3>
+              </IonCard>
+            </IonCol>
+            <IonCol>
+              <IonCard className="ion-text-center">
+                <h2>84+ Hours</h2>
+                <h3>Dicipline</h3>
+              </IonCard>
+            </IonCol>
+            <IonCol>
+              <IonCard className="ion-text-center">
+                <h2>1:1 </h2>
+                <h3>Personalized Feedback</h3>
+              </IonCard>
+            </IonCol>
+            <IonCol>
+              <IonCard className="ion-text-center">
+                <h2>1 Vision Map</h2>
+                <h3>Precision</h3>
+              </IonCard>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
+
         <IonCard>
           <IonText
             className="ion-margin-horizontal animated-text move-text-top ion-margin"
@@ -250,133 +280,7 @@ const Home: React.FC = () => {
             </IonCol>
           </IonRow>
         </IonGrid>
-        <IonCard>
-          <IonText
-            className="ion-margin-horizontal animated-text move-text-top ion-margin"
-            style={{ paddingStart: "10px" }}
-          >
-            <h1>
-              <img src="/falling-star.svg" height="24" width="24" /> Words From
-              Previous Collaborators
-            </h1>
-            <p>
-              You are now part of a vibrant community that believes in the power
-              of collaborative learning and support. Here's what some of your
-              fellow members have to say about their experiences:
-            </p>
-          </IonText>
-        </IonCard>
-        <IonGrid>
-          <IonRow>
-            <IonCol size="12" sizeSm="6">
-              <IonCard>
-                <IonCardHeader>
-                  <IonCardTitle>
-                    <IonIcon
-                      icon={globeOutline}
-                      size="large"
-                      className="left-aligned"
-                    />{" "}
-                    Garnell Amersley <br />
-                    New York City, USA.
-                    <img
-                      src="/pin.svg"
-                      className="left-aligned"
-                      height="24"
-                      width="24"
-                    />
-                  </IonCardTitle>
-                </IonCardHeader>
-                <IonCardContent className="ion-text-left animated-text">
-                  Jordan's vision is beyond vison! He is super zoomed in.
-                </IonCardContent>
-              </IonCard>
-            </IonCol>
-            <IonCol size="12" sizeSm="6">
-              {" "}
-              <IonCard>
-                {" "}
-                <IonCardHeader>
-                  <IonCardTitle>
-                    <IonIcon
-                      icon={globeOutline}
-                      size="large"
-                      className="left-aligned"
-                    />{" "}
-                    Rosie Faria <br />
-                    Sydney, Australia.
-                    <img
-                      src="/pin.svg"
-                      className="left-aligned"
-                      height="24"
-                      width="24"
-                    />
-                  </IonCardTitle>
-                </IonCardHeader>
-                <IonCardContent className="ion-text-left animated-text">
-                  Jordan has always seen things from a different perspective. He
-                  finds the beauty that most miss.
-                </IonCardContent>
-              </IonCard>
-            </IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol size="12" sizeSm="6">
-              <IonCard>
-                {" "}
-                <IonCardHeader>
-                  <IonCardTitle>
-                    <IonIcon
-                      icon={globeOutline}
-                      size="large"
-                      className="left-aligned"
-                    />{" "}
-                    Alex T. <br />
-                    London, UK.
-                    <img
-                      src="/pin.svg"
-                      className="left-aligned"
-                      height="24"
-                      width="24"
-                    />
-                  </IonCardTitle>
-                </IonCardHeader>
-                <IonCardContent className="ion-text-left animated-text">
-                  I've gained so much clarity and direction from the support and
-                  community built around emerging filmmakers.
-                </IonCardContent>
-              </IonCard>
-            </IonCol>
-            <IonCol size="12" sizeSm="6">
-              {" "}
-              <IonCard>
-                {" "}
-                <IonCardHeader>
-                  <IonCardTitle>
-                    <IonIcon
-                      icon={globeOutline}
-                      size="large"
-                      className="left-aligned"
-                    />{" "}
-                    Jada Poon
-                    <br />
-                    Madrid, Spain.
-                    <img
-                      src="/pin.svg"
-                      className="left-aligned"
-                      height="24"
-                      width="24"
-                    />
-                  </IonCardTitle>
-                </IonCardHeader>
-                <IonCardContent className="ion-text-left animated-text">
-                  Jordan raised my standards for a DP because of how efficient
-                  and effective he was able to capture beautiful images.
-                </IonCardContent>
-              </IonCard>
-            </IonCol>
-          </IonRow>
-        </IonGrid>
+
         <IonCard>
           <IonText
             className="ion-margin-horizontal animated-text move-text-top ion-margin"
@@ -409,7 +313,6 @@ const Home: React.FC = () => {
             </p>
           </IonText>
         </IonCard>
-        <Footer name="Home" />
       </IonContent>
     </IonPage>
   );

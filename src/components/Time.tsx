@@ -2,16 +2,21 @@ import React, { useState, useEffect } from "react";
 import { IonText } from "@ionic/react";
 import { Storage } from "@ionic/storage";
 const storage = new Storage();
-await storage.create();
+storage.create();
+let firstRun;
+// Change the top-level await to be inside an async function
+const initializeStorage = async () => {
+  firstRun = await storage.get("firstRun");
+  if (firstRun === null) {
+    await storage.set("firstRun", new Date().getTime());
+  }
+};
 
-const firstRun = await storage.get("firstRun");
-if (firstRun === null) {
-  await storage.set("firstRun", new Date().getTime());
-}
+initializeStorage();
 
 function getTimeDifference(
-  timestamp1: number,
-  timestamp2: number
+  timestamp1: any,
+  timestamp2: any
 ): {
   milliseconds: number;
   seconds: number;
@@ -79,7 +84,7 @@ const CurrentTime: React.FC = () => {
   }, []);
 
   return (
-    <IonText>
+    <IonText className="ion-margin-end">
       <p>{currentTime}</p>
     </IonText>
   );
