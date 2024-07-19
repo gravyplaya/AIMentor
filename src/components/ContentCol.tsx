@@ -77,7 +77,8 @@ const ContentCol: React.FC = () => {
           style={{ paddingStart: "10px" }}
         >
           <h1>
-            <img src="/markup.png" height="24" width="24" /> About the Challenge
+            <img src="/images/markup.png" height="24" width="24" /> About the
+            Challenge
           </h1>
           <p>
             Our "challenge" is more than just guidance; it's a transformative
@@ -89,8 +90,8 @@ const ContentCol: React.FC = () => {
       <IonCard>
         <IonCardHeader>
           <IonCardTitle>
-            <img src="/plearning.png" height="24" width="24" /> Personalized
-            Learning
+            <img src="/images/plearning.png" height="24" width="24" />{" "}
+            Personalized Learning
           </IonCardTitle>
         </IonCardHeader>
         <IonCardContent className="ion-text-left animated-text move-text-top">
@@ -169,8 +170,8 @@ const ContentCol: React.FC = () => {
           style={{ paddingStart: "10px" }}
         >
           <h1>
-            <img src="/how-it-works.svg" height="24" width="24" /> How the
-            Framework Works
+            <img src="/images/how-it-works.svg" height="24" width="24" /> How
+            the Framework Works
           </h1>
           <p>
             Throughout this strategy, you'll dive deep into essential areas of
@@ -271,8 +272,8 @@ const ContentCol: React.FC = () => {
           style={{ paddingLeft: "10px" }}
         >
           <h1>
-            <img src="/markup.png" height="24" width="24" /> Maximize Your
-            Experience
+            <img src="/images/markup.png" height="24" width="24" /> Maximize
+            Your Experience
           </h1>
           <p>To get the most out of this program, I encourage you to:</p>
 

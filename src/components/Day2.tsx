@@ -58,11 +58,11 @@ const Day2: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
-        <img src="/day2.png" />
+        <img src="/images/day2.png" />
         <IonCard>
           <IonCardHeader>
             <IonCardTitle>
-              <img src="/suitcase.svg" height="24" width="24" /> Morning
+              <img src="/images/suitcase.svg" height="24" width="24" /> Morning
               Objectives:
             </IonCardTitle>
           </IonCardHeader>
@@ -197,8 +197,8 @@ const Day2: React.FC = () => {
         <IonCard>
           <IonCardHeader>
             <IonCardTitle>
-              <img src="/suitcase.svg" height="24" width="24" /> Afternoon
-              Objectives:
+              <img src="/images/suitcase.svg" height="24" width="24" />{" "}
+              Afternoon Objectives:
             </IonCardTitle>
           </IonCardHeader>
           <IonCardContent className="ion-text-left animated-text move-text-top">
@@ -308,7 +308,7 @@ const Day2: React.FC = () => {
         <IonCard>
           <IonCardHeader>
             <IonCardTitle>
-              <img src="/suitcase.svg" height="24" width="24" /> Evening
+              <img src="/images/suitcase.svg" height="24" width="24" /> Evening
               Objective:
             </IonCardTitle>
           </IonCardHeader>
