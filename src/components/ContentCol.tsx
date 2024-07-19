@@ -26,7 +26,7 @@ const ContentCol: React.FC = () => {
         <IonRow>
           <IonCol size="12" sizeSm="6">
             <img
-              src="/7days-logo.png"
+              src="/images/7days-logo.png"
               className="right-aligned"
               height="260"
               width="260"
@@ -107,7 +107,7 @@ const ContentCol: React.FC = () => {
         <IonCardHeader>
           <IonCardTitle>
             <img
-              src="/expert-guidance.svg"
+              src="/images/expert-guidance.svg"
               className="animated-text"
               height="24"
               width="24"
@@ -128,7 +128,7 @@ const ContentCol: React.FC = () => {
         <IonCardHeader>
           <IonCardTitle>
             <img
-              src="/comp-resources.svg"
+              src="/images/comp-resources.svg"
               className="left-aligned"
               height="24"
               width="24"
@@ -149,7 +149,7 @@ const ContentCol: React.FC = () => {
         <IonCardHeader>
           <IonCardTitle>
             <img
-              src="/comm-support.png"
+              src="/images/comm-support.png"
               className="left-aligned"
               height="24"
               width="24"
@@ -187,7 +187,7 @@ const ContentCol: React.FC = () => {
               <IonCardHeader>
                 <IonCardTitle>
                   <img
-                    src="/daily-prompts.svg"
+                    src="/images/daily-prompts.svg"
                     className="left-aligned"
                     height="24"
                     width="24"
@@ -207,7 +207,7 @@ const ContentCol: React.FC = () => {
               <IonCardHeader>
                 <IonCardTitle>
                   <img
-                    src="/interactive-ex.svg"
+                    src="/images/interactive-ex.svg"
                     className="left-aligned"
                     height="24"
                     width="24"
@@ -228,7 +228,7 @@ const ContentCol: React.FC = () => {
               <IonCardHeader>
                 <IonCardTitle>
                   <img
-                    src="/feedback-reflection.svg"
+                    src="/images/feedback-reflection.svg"
                     className="left-aligned"
                     height="24"
                     width="24"
@@ -248,7 +248,7 @@ const ContentCol: React.FC = () => {
               <IonCardHeader>
                 <IonCardTitle>
                   <img
-                    src="/vision-map.svg"
+                    src="/images/vision-map.svg"
                     className="left-aligned"
                     height="24"
                     width="24"

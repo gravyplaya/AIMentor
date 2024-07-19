@@ -68,7 +68,7 @@ const Home: React.FC = () => {
               <div className="full-height magical-column">
                 {" "}
                 <img
-                  src="/7days-logo.png"
+                  src="/images/7days-logo.png"
                   className="right-aligned"
                   height="50"
                   width="50"

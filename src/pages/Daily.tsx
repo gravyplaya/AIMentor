@@ -59,7 +59,7 @@ const Daily: React.FC = () => {
         <IonRow>
           <IonCol size="12" sizeSm="6">
             <img
-              src="/day1.png"
+              src="/images/day1.png"
               className="right-aligned"
               height="180"
               width="325"
@@ -93,7 +93,7 @@ const Daily: React.FC = () => {
         <IonRow>
           <IonCol size="12" sizeSm="6">
             <img
-              src="/day2.png"
+              src="/images/day2.png"
               className="right-aligned"
               height="180"
               width="325"
@@ -128,7 +128,7 @@ const Daily: React.FC = () => {
         <IonRow>
           <IonCol size="12" sizeSm="6">
             <img
-              src="/day3.png"
+              src="/images/day3.png"
               className="right-aligned"
               height="180"
               width="325"
@@ -161,7 +161,7 @@ const Daily: React.FC = () => {
         <IonRow>
           <IonCol size="12" sizeSm="6">
             <img
-              src="/day4.png"
+              src="/images/day4.png"
               className="right-aligned"
               height="180"
               width="325"
@@ -195,7 +195,7 @@ const Daily: React.FC = () => {
         <IonRow>
           <IonCol size="12" sizeSm="6">
             <img
-              src="/day5.png"
+              src="/images/day5.png"
               className="right-aligned"
               height="180"
               width="325"
@@ -230,7 +230,7 @@ const Daily: React.FC = () => {
         <IonRow>
           <IonCol size="12" sizeSm="6">
             <img
-              src="/day6.png"
+              src="/images/day6.png"
               className="right-aligned"
               height="180"
               width="325"
@@ -262,7 +262,7 @@ const Daily: React.FC = () => {
         <IonRow>
           <IonCol size="12" sizeSm="6">
             <img
-              src="/day7.png"
+              src="/images/day7.png"
               className="right-aligned"
               height="180"
               width="325"
