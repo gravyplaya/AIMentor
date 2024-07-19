@@ -12,6 +12,7 @@ import {
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import VerticalTabs from "./components/VerticalTabs";
+import Home from "./pages/Home";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -48,10 +49,7 @@ setupIonicReact();
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-      <div className="logo-container">
-        <IonImg src="/7days-logo.png" alt="Logo" className="logo" />
-      </div>
-      <VerticalTabs />
+      <Home />
     </IonReactRouter>
   </IonApp>
 );

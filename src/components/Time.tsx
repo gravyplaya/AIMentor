@@ -2,21 +2,16 @@ import React, { useState, useEffect } from "react";
 import { IonText } from "@ionic/react";
 import { Storage } from "@ionic/storage";
 const storage = new Storage();
-storage.create();
-let firstRun;
-// Change the top-level await to be inside an async function
-const initializeStorage = async () => {
-  firstRun = await storage.get("firstRun");
-  if (firstRun === null) {
-    await storage.set("firstRun", new Date().getTime());
-  }
-};
+await storage.create();
 
-initializeStorage();
+const firstRun = await storage.get("firstRun");
+if (firstRun === null) {
+  await storage.set("firstRun", new Date().getTime());
+}
 
 function getTimeDifference(
-  timestamp1: any,
-  timestamp2: any
+  timestamp1: number,
+  timestamp2: number
 ): {
   milliseconds: number;
   seconds: number;
@@ -36,30 +31,54 @@ function getTimeDifference(
 }
 
 const diff = getTimeDifference(firstRun, new Date().getTime());
+
 const currentHour = new Date().getHours();
-const hours = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-const questions = [
-  "8am",
-  "9am",
-  "10am",
-  "11am",
-  "12noon",
-  "1pm",
-  "2pm",
-  "3pm",
-  "4pm",
-  "5pm",
-  "6pm",
-  "7pm",
-  "8pm",
-];
+
+function showQuestion(day: number, hour: number) {
+  const magicDiv = document.getElementById("d" + day + "q" + hour);
+  magicDiv?.classList.add("clear");
+}
 
 if (diff.days <= 7) {
-  hours.forEach((hour, index) => {
-    if (currentHour >= hour) {
-      console.log(`show ${questions[index]} question for day ${diff.days}`);
-    }
-  });
+  if (currentHour >= 8) {
+    showQuestion(diff.days, 1);
+  }
+  if (currentHour >= 9) {
+    showQuestion(diff.days, 2);
+  }
+  if (currentHour >= 10) {
+    showQuestion(diff.days, 3);
+  }
+  if (currentHour >= 11) {
+    showQuestion(diff.days, 4);
+  }
+  if (currentHour >= 12) {
+    showQuestion(diff.days, 5);
+  }
+  if (currentHour >= 13) {
+    showQuestion(diff.days, 6);
+  }
+  if (currentHour >= 14) {
+    showQuestion(diff.days, 7);
+  }
+  if (currentHour >= 15) {
+    showQuestion(diff.days, 8);
+  }
+  if (currentHour >= 16) {
+    showQuestion(diff.days, 9);
+  }
+  if (currentHour >= 17) {
+    showQuestion(diff.days, 10);
+  }
+  if (currentHour >= 18) {
+    showQuestion(diff.days, 11);
+  }
+  if (currentHour >= 19) {
+    showQuestion(diff.days, 12);
+  }
+  if (currentHour >= 20) {
+    showQuestion(diff.days, 13);
+  }
 }
 
 const CurrentTime: React.FC = () => {
@@ -84,7 +103,7 @@ const CurrentTime: React.FC = () => {
   }, []);
 
   return (
-    <IonText className="ion-margin-end">
+    <IonText>
       <p>{currentTime}</p>
     </IonText>
   );

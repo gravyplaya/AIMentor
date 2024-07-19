@@ -1,5 +1,3 @@
-/* For information on how to create your own theme, please see:
-http://ionicframework.com/docs/theming/ */
 @font-face {
   font-family: "SpaceGrotesk";
   src: url("../SpaceGrotesk-VariableFont_wght.ttf") format("truetype");
@@ -18,4 +16,33 @@ ion-toolbar {
 }
 h1 {
   color: #ffffff;
+}
+.blur {
+  filter: blur(10px);
+}
+.clear {
+  filter: blur(0px);
+}
+.ion-padding {
+  --ion-padding: 16px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+ion-button {
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+ion-button:hover {
+  --box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
 }

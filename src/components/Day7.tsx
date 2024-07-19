@@ -58,7 +58,7 @@ const Day7: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
-        <img src="/day7.png" height="260" width="260" />
+        <img src="/day7.png" />
         <IonCard>
           <IonCardHeader>
             <IonCardTitle>
@@ -71,13 +71,13 @@ const Day7: React.FC = () => {
           </IonCardContent>
         </IonCard>
         <IonAccordionGroup>
-          <IonAccordion toggleIcon={addOutline}>
+          <IonAccordion>
             <IonItem slot="header">
               <IonLabel>
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">8:00 AM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d7q1" className="blur">
                       Good morning! Reflect on the past week. What were the most
                       significant challenges you faced?{" "}
                       <i>Identifying challenges helps you learn and grow.</i>
@@ -86,7 +86,7 @@ const Day7: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d7a1">
               response
             </div>
           </IonAccordion>
@@ -96,14 +96,14 @@ const Day7: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">9:00 AM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d7q2" className="blur">
                       What were your greatest achievements last week?
                     </IonCol>
                   </IonRow>
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d7a2">
               Content
             </div>
           </IonAccordion>
@@ -114,7 +114,7 @@ const Day7: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">10:00 AM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d7q3" className="blur">
                       Identify any skills or knowledge gaps that last week
                       highlighted.{" "}
                       <i>Recognizing gaps guides your learning efforts.</i>
@@ -123,7 +123,7 @@ const Day7: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d7a3">
               Content
             </div>
           </IonAccordion>
@@ -134,7 +134,7 @@ const Day7: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">11:00 AM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d7q4" className="blur">
                       Set a learning goal for the coming week to address one of
                       those gaps. Clear goals focus your efforts.
                     </IonCol>
@@ -142,7 +142,7 @@ const Day7: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d7a4">
               Content
             </div>
           </IonAccordion>
@@ -153,7 +153,7 @@ const Day7: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">12:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d7q5" className="blur">
                       Plan a specific activity or task for each day of the
                       upcoming week that aligns with your long-term goals.
                     </IonCol>
@@ -161,7 +161,7 @@ const Day7: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d7a5">
               Content
             </div>
           </IonAccordion>
@@ -202,7 +202,7 @@ const Day7: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">1:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d7q6" className="blur">
                       Think about someone who inspires you creatively. What
                       qualities do they have that you admire? Learning from
                       others can inspire your own journey.
@@ -211,7 +211,7 @@ const Day7: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d7a6">
               something something something daarkside
             </div>
           </IonAccordion>
@@ -221,7 +221,7 @@ const Day7: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">2:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d7q7" className="blur">
                       How can you embody these qualities in your work and daily
                       habits?
                     </IonCol>
@@ -229,7 +229,7 @@ const Day7: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d7a7">
               Content
             </div>
           </IonAccordion>
@@ -240,7 +240,7 @@ const Day7: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">3:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d7q8" className="blur">
                       Draft a weekly schedule that includes time for self-care
                       and personal development. Balancing work and self-care
                       sustains long-term success.
@@ -249,7 +249,7 @@ const Day7: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d7a8">
               Content
             </div>
           </IonAccordion>
@@ -260,7 +260,7 @@ const Day7: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">4:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d7q9" className="blur">
                       Plan an engagement with someone in your field that you can
                       learn from.
                     </IonCol>
@@ -268,7 +268,7 @@ const Day7: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d7a9">
               Content
             </div>
           </IonAccordion>
@@ -310,7 +310,7 @@ const Day7: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">5:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d7q10" className="blur">
                       What tools or resources do you need to make your plans for
                       next week successful? Preparation is key to success.
                     </IonCol>
@@ -318,7 +318,7 @@ const Day7: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d7q10">
               beetlejuice
             </div>
           </IonAccordion>
@@ -328,7 +328,7 @@ const Day7: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">6:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d7q11" className="blur">
                       How will you track and measure your progress on these
                       plans? Tracking progress ensures accountability.
                     </IonCol>
@@ -336,7 +336,7 @@ const Day7: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d7q11">
               Content
             </div>
           </IonAccordion>
@@ -347,7 +347,7 @@ const Day7: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">7:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d7q12" className="blur">
                       Write down any fears or concerns about the coming week and
                       how you plan to address them. Acknowledging concerns helps
                       you manage them.
@@ -356,7 +356,7 @@ const Day7: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d7q12">
               Content
             </div>
           </IonAccordion>
@@ -367,7 +367,7 @@ const Day7: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">8:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d7q13" className="blur">
                       Close your week with relaxation and reflection. Reflect on
                       this week's effectiveness and how it could be integrated
                       into your regular routine.
@@ -376,7 +376,7 @@ const Day7: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d7q13">
               Content
             </div>
           </IonAccordion>

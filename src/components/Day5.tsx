@@ -71,13 +71,13 @@ const Day5: React.FC = () => {
           </IonCardContent>
         </IonCard>
         <IonAccordionGroup>
-          <IonAccordion toggleIcon={addOutline}>
+          <IonAccordion>
             <IonItem slot="header">
               <IonLabel>
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">8:00 AM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d5q1" className="blur">
                       Good morning! How do you define your personal brand in
                       three words?
                     </IonCol>
@@ -85,7 +85,7 @@ const Day5: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d5a1">
               these three words
             </div>
           </IonAccordion>
@@ -95,7 +95,7 @@ const Day5: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">9:00 AM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d5q2" className="blur">
                       What are the key elements of your work that express your
                       personal brand?{" "}
                       <i>
@@ -107,7 +107,7 @@ const Day5: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d5a2">
               Content
             </div>
           </IonAccordion>
@@ -118,7 +118,7 @@ const Day5: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">10:00 AM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d5q3" className="blur">
                       Share a recent project that accurately reflects your
                       personal brand. What feedback did you receive on it?{" "}
                       <i>
@@ -129,7 +129,7 @@ const Day5: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d5a3">
               Content
             </div>
           </IonAccordion>
@@ -140,7 +140,7 @@ const Day5: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">11:00 AM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d5q4" className="blur">
                       What aspect of your personal brand needs further
                       development?{" "}
                       <i>Identifying growth areas helps refine your brand.</i>
@@ -149,7 +149,7 @@ const Day5: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d5a4">
               Content
             </div>
           </IonAccordion>
@@ -160,7 +160,7 @@ const Day5: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">12:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d5q5" className="blur">
                       How can you more effectively communicate your brand values
                       through your work?{" "}
                       <i>
@@ -172,7 +172,7 @@ const Day5: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d5a5">
               Content
             </div>
           </IonAccordion>
@@ -213,7 +213,7 @@ const Day5: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">1:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d5q6" className="blur">
                       Evaluate your online presence. Does it effectively
                       represent your “brand” to your satisfaction?{" "}
                       <i>A strong online presence supports your brand.</i>
@@ -222,7 +222,7 @@ const Day5: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d5a6">
               yesirr
             </div>
           </IonAccordion>
@@ -232,7 +232,7 @@ const Day5: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">2:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d5q7" className="blur">
                       Identify a new tactic you could use to enhance your online
                       visibility and engagement.{" "}
                       <i>New strategies can boost your reach.</i>
@@ -241,7 +241,7 @@ const Day5: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d5a7">
               Content
             </div>
           </IonAccordion>
@@ -252,7 +252,7 @@ const Day5: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">3:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d5q8" className="blur">
                       Plan a content calendar for the next month that aligns
                       with your personal brand.{" "}
                       <i>Consistent content reinforces your brand.</i>
@@ -261,7 +261,7 @@ const Day5: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d5a8">
               Content
             </div>
           </IonAccordion>
@@ -272,7 +272,7 @@ const Day5: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">4:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d5q9" className="blur">
                       Reach out to a person from your audience list who aligns
                       with your brand values. Propose a collaboration.
                     </IonCol>
@@ -280,7 +280,7 @@ const Day5: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d5a9">
               Content
             </div>
           </IonAccordion>
@@ -321,7 +321,7 @@ const Day5: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">5:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d5q10" className="blur">
                       What are your main marketing challenges currently?{" "}
                       <i>
                         Identifying challenges is the first step to overcoming
@@ -332,7 +332,7 @@ const Day5: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d5a10">
               my challenges are
             </div>
           </IonAccordion>
@@ -342,7 +342,7 @@ const Day5: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">6:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d5q11" className="blur">
                       Identify a recent successful marketing strategy in your
                       field. How could its principles be adapted for your use?
                     </IonCol>
@@ -350,7 +350,7 @@ const Day5: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d5a11">
               Content
             </div>
           </IonAccordion>
@@ -361,7 +361,7 @@ const Day5: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">7:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d5q12" className="blur">
                       Create a list of marketing goals for the upcoming quarter.
                       Think of this like a shotlist.
                     </IonCol>
@@ -369,7 +369,7 @@ const Day5: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d5a12">
               Content
             </div>
           </IonAccordion>
@@ -380,7 +380,7 @@ const Day5: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">8:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d5q13" className="blur">
                       Reflect on your attention and perspective strategies.
                       Which tactics do you believe will be most effective and
                       why?
@@ -389,7 +389,7 @@ const Day5: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d5a13">
               Content
             </div>
           </IonAccordion>

@@ -11,7 +11,7 @@ import CurrentTime from "./Time";
 import React from "react";
 
 interface ContainerProps {
-  name: string;
+  name?: string;
 }
 
 const Header: React.FC<ContainerProps> = ({ name }) => {

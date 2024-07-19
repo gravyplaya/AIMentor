@@ -28,7 +28,9 @@ import {
 import "../pages/Daily.css";
 import { linkOutline, addOutline } from "ionicons/icons";
 
-const Day1: React.FC = () => {
+const Day1: React.FC<{
+  onDidPresent: () => void;
+}> = ({ onDidPresent }) => {
   const modal = useRef<HTMLIonModalElement>(null);
   const page = useRef(null);
 
@@ -48,6 +50,7 @@ const Day1: React.FC = () => {
       ref={modal}
       trigger="open-modal1"
       presentingElement={presentingElement!}
+      onDidPresent={onDidPresent}
     >
       <IonHeader>
         <IonToolbar>
@@ -58,7 +61,7 @@ const Day1: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
-        <img src="/day1.png" height="260" width="260" />
+        <img src="/day1.png" />
         <IonCard>
           <IonCardHeader>
             <IonCardTitle>
@@ -71,13 +74,13 @@ const Day1: React.FC = () => {
           </IonCardContent>
         </IonCard>
         <IonAccordionGroup>
-          <IonAccordion toggleIcon={addOutline}>
+          <IonAccordion>
             <IonItem slot="header">
               <IonLabel>
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">8:00 AM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d1q1" className="blur">
                       What is one core value that drives all your creative
                       projects?
                     </IonCol>
@@ -85,7 +88,7 @@ const Day1: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d1a1">
               The core value that drives all my creative projects is
               authenticity. I believe in being true to myself and my vision,
               which ensures my work resonates deeply and genuinely with my
@@ -98,7 +101,7 @@ const Day1: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">9:00 AM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d1q2" className="blur">
                       Think about what you love doing. It could be a hobby, a
                       dream, or a cause you believe in. Write down three things
                       you're passionate about.
@@ -107,7 +110,7 @@ const Day1: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d1a2">
               Second Content
             </div>
           </IonAccordion>
@@ -118,7 +121,7 @@ const Day1: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">10:00 AM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d1q3" className="blur">
                       Consider how your personal experiences shape the themes
                       you explore. How do they influence your work? This
                       connection can make your creations more authentic and
@@ -128,7 +131,7 @@ const Day1: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d1a3">
               Third Content
             </div>
           </IonAccordion>
@@ -139,7 +142,7 @@ const Day1: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">11:00 AM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d1q4" className="blur">
                       Your background gives you a unique perspective. What
                       special insights do you bring to your creative work
                       because of it? Embrace these differences—they're what will
@@ -149,7 +152,7 @@ const Day1: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d1a4">
               Third Content
             </div>
           </IonAccordion>
@@ -160,7 +163,7 @@ const Day1: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">12:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d1q5" className="blur">
                       As you approach lunchtime, think about your values. How
                       could you better integrate them into your creative output?{" "}
                       <i>This will deepen the impact of your work.</i>
@@ -169,7 +172,7 @@ const Day1: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d1a5">
               Third Content
             </div>
           </IonAccordion>
@@ -211,7 +214,7 @@ const Day1: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">1:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d1q6" className="blur">
                       Think of a local or community story that has impacted you.
                       What is it? These stories often have powerful, universal
                       themes that connect personally.
@@ -220,7 +223,7 @@ const Day1: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d1a6">
               The core value that drives all my creative projects is
               authenticity. I believe in being true to myself and my vision,
               which ensures my work resonates deeply and genuinely with my
@@ -233,7 +236,7 @@ const Day1: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">2:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d1q7" className="blur">
                       Identify three themes from this story that could relate to
                       on a global scale. Recognizing these connections can
                       expand the reach of your work
@@ -242,7 +245,7 @@ const Day1: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d1a7">
               Second Content
             </div>
           </IonAccordion>
@@ -253,7 +256,7 @@ const Day1: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">3:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d1q8" className="blur">
                       How would you start developing one of these themes into a
                       project concept? Brainstorming this can turn a powerful
                       idea into a tangible plan.
@@ -262,7 +265,7 @@ const Day1: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d1a8">
               Third Content
             </div>
           </IonAccordion>
@@ -273,7 +276,7 @@ const Day1: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">4:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d1q9" className="blur">
                       What visual elements or styles would best convey the
                       emotion of this story?
                     </IonCol>
@@ -281,7 +284,7 @@ const Day1: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d1a9">
               Third Content
             </div>
           </IonAccordion>
@@ -323,7 +326,7 @@ const Day1: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">5:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d1q10" className="blur">
                       Let's set some goals. What are three creative achievements
                       you want to reach this month? Clear goals can keep you
                       focused and motivated.
@@ -332,7 +335,7 @@ const Day1: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d1a10">
               The core value that drives all my creative projects is
               authenticity. I believe in being true to myself and my vision,
               which ensures my work resonates deeply and genuinely with my
@@ -345,7 +348,7 @@ const Day1: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">6:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d1q11" className="blur">
                       Identify potential barriers to achieving these goals. How
                       might you overcome them?
                     </IonCol>
@@ -353,7 +356,7 @@ const Day1: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d1a11">
               Second Content
             </div>
           </IonAccordion>
@@ -364,7 +367,7 @@ const Day1: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">7:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d1q12" className="blur">
                       What strategies can you implement to maintain focus on
                       your goals amidst distractions?
                     </IonCol>
@@ -372,7 +375,7 @@ const Day1: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d1a12">
               Third Content
             </div>
           </IonAccordion>
@@ -383,7 +386,7 @@ const Day1: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">8:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d1q13" className="blur">
                       Reflect on the day's work. What insights have you gained
                       about your creative vision? Taking time to reflect helps
                       solidify your progress and clarify your direction.
@@ -392,7 +395,7 @@ const Day1: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d1a13">
               Third Content
             </div>
           </IonAccordion>

@@ -1,3 +1,35 @@
+.full-height {
+  /* height: 100%; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.magical-column {
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+.right-row-pt {
+  padding-top: 70px;
+}
+.magical-cell {
+  padding: 10px;
+  margin: 5px;
+  text-align: center;
+}
+.border-right-gray {
+  border-right: 1px solid #202021;
+}
+.border-left-gray {
+  border-left: 1px solid #202021;
+}
+.border-top-gray {
+  border-top: 1px solid #202021;
+}
+.border-bottom-gray {
+  border-bottom: 1px solid #202021;
+}
 .right-aligned {
   float: right;
   margin-right: 10px;
@@ -32,4 +64,10 @@
 }
 ion-content {
   --padding-start: 80px;
+}
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 30vh 0;
 }

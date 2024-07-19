@@ -13,7 +13,7 @@ import CurrentTime from "./Time";
 import React from "react";
 
 interface ContainerProps {
-  name: string;
+  name?: string;
 }
 
 const Footer: React.FC<ContainerProps> = ({ name }) => {

@@ -58,7 +58,7 @@ const Day3: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
-        <img src="/day3.png" height="260" width="260" />
+        <img src="/day3.png" />
         <IonCard>
           <IonCardHeader>
             <IonCardTitle>
@@ -71,13 +71,13 @@ const Day3: React.FC = () => {
           </IonCardContent>
         </IonCard>
         <IonAccordionGroup>
-          <IonAccordion toggleIcon={addOutline}>
+          <IonAccordion>
             <IonItem slot="header">
               <IonLabel>
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">8:00 AM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d3q1" className="blur">
                       Good morning! Who do you consider your primary audience,
                       and what are their key characteristics? Understanding your
                       audience is crucial for creating connections that are
@@ -87,7 +87,7 @@ const Day3: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d3q1">
               The core value that drives all my creative projects is
               authenticity. I believe in being true to myself and my vision,
               which ensures my work resonates deeply and genuinely with my
@@ -100,7 +100,7 @@ const Day3: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">9:00 AM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d3q12" className="blur">
                       Describe a piece of media that successfully engaged a
                       similar audience. What lessons can you draw from it?
                       Learning from others can provide valuable insights for
@@ -110,7 +110,7 @@ const Day3: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d3a2">
               Second Content
             </div>
           </IonAccordion>
@@ -121,7 +121,7 @@ const Day3: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">10:00 AM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d3q3" className="blur">
                       How do you plan to use your next project to positively
                       impact your audience?{" "}
                       <i>
@@ -133,7 +133,7 @@ const Day3: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d3a3">
               Third Content
             </div>
           </IonAccordion>
@@ -144,7 +144,7 @@ const Day3: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">11:00 AM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d3q4" className="blur">
                       What methods will you use to measure the social impact of
                       your work? Knowing how to measure impact can help you
                       gauge the success and influence of your projects.
@@ -153,7 +153,7 @@ const Day3: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d3a4">
               Third Content
             </div>
           </IonAccordion>
@@ -164,7 +164,7 @@ const Day3: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">12:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d3q5" className="blur">
                       Can you think of an example where media failed to connect
                       with its audience? Why did it fail? Understanding failures
                       can provide important lessons for your own work.
@@ -173,7 +173,7 @@ const Day3: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d3a5">
               Third Content
             </div>
           </IonAccordion>
@@ -184,7 +184,7 @@ const Day3: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">Morning Conclusion</IonCol>
-                    <IonCol>Tap to Review</IonCol>
+                    <IonCol className="blur">Tap to Review</IonCol>
                   </IonRow>
                 </IonGrid>
               </IonLabel>
@@ -215,7 +215,7 @@ const Day3: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">1:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d3q6" className="blur">
                       Discuss an ethical dilemma you might face in your
                       storytelling and how you plan to address it. Tackling
                       ethical issues head-on strengthens the integrity of your
@@ -225,7 +225,7 @@ const Day3: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d3a6">
               The core value that drives all my creative projects is
               authenticity. I believe in being true to myself and my vision,
               which ensures my work resonates deeply and genuinely with my
@@ -238,7 +238,7 @@ const Day3: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">2:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d3q7" className="blur">
                       How will you ensure your work respects and represents
                       diverse perspectives? Inclusivity enriches your work and
                       broadens its appeal.
@@ -247,7 +247,7 @@ const Day3: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d3a7">
               Second Content
             </div>
           </IonAccordion>
@@ -258,17 +258,17 @@ const Day3: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">3:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d3q8" className="blur">
                       What are the potential consequences of not addressing
                       these ethical considerations properly? Anticipating the
-                      impact of oversight helps maintain your work’s
+                      impact of oversight helps maintain your work's
                       credibility.
                     </IonCol>
                   </IonRow>
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d3a8">
               Third Content
             </div>
           </IonAccordion>
@@ -279,7 +279,7 @@ const Day3: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">4:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d3q9" className="blur">
                       Identify individuals in your network who can support you
                       during tough times. List those you can rely on for
                       guidance and motivation. Seeking guidance shows commitment
@@ -289,7 +289,7 @@ const Day3: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d3a9">
               Third Content
             </div>
           </IonAccordion>
@@ -331,7 +331,7 @@ const Day3: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">5:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d3q10" className="blur">
                       What networking strategies have you found most effective
                       in building meaningful relationships?{" "}
                       <i>
@@ -343,7 +343,7 @@ const Day3: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d3a10">
               The core value that drives all my creative projects is
               authenticity. I believe in being true to myself and my vision,
               which ensures my work resonates deeply and genuinely with my
@@ -356,7 +356,7 @@ const Day3: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">6:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d3q11" className="blur">
                       Identify a professional in your network whom you would
                       like to collaborate with. What makes them a good fit?{" "}
                       <i>Choose the right collaborators.</i>
@@ -365,7 +365,7 @@ const Day3: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d3a11">
               Second Content
             </div>
           </IonAccordion>
@@ -376,7 +376,7 @@ const Day3: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">7:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d3q12" className="blur">
                       How can you strengthen your network this week to support
                       your career goals?
                     </IonCol>
@@ -384,7 +384,7 @@ const Day3: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d3a12">
               Third Content
             </div>
           </IonAccordion>
@@ -395,7 +395,7 @@ const Day3: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">8:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d3q13" className="blur">
                       Evaluate your networking efforts today. What worked, and
                       what could be improved?
                     </IonCol>
@@ -403,7 +403,7 @@ const Day3: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d3a13">
               Third Content
             </div>
           </IonAccordion>
@@ -414,12 +414,14 @@ const Day3: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">Evening Conclusion</IonCol>
-                    <IonCol>Tap to Review</IonCol>
+                    <IonCol id="d3q1" className="blur">
+                      Tap to Review
+                    </IonCol>
                   </IonRow>
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d3q1">
               By the end of the evening, you will have evaluated effective
               networking strategies, identified potential collaborators, planned
               to strengthen your network, and reflected on your networking

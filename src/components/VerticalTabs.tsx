@@ -36,10 +36,6 @@ const VerticalTabs: React.FC = () => {
             <IonIcon icon={personOutline} />
             <IonLabel>Home</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="messages" href="/messages">
-            <IonIcon icon={flashOutline} />
-            <IonLabel>Messages</IonLabel>
-          </IonTabButton>
           <IonTabButton tab="daily" href="/daily">
             <IonIcon icon={flashOutline} />
             <IonLabel>Daily</IonLabel>

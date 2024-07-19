@@ -58,7 +58,7 @@ const Day4: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
-        <img src="/day4.png" height="260" width="260" />
+        <img src="/day4.png" />
         <IonCard>
           <IonCardHeader>
             <IonCardTitle>
@@ -71,13 +71,13 @@ const Day4: React.FC = () => {
           </IonCardContent>
         </IonCard>
         <IonAccordionGroup>
-          <IonAccordion toggleIcon={addOutline}>
+          <IonAccordion>
             <IonItem slot="header">
               <IonLabel>
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">8:00 AM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d4q1" className="blur">
                       Good morning! What creative block are you currently facing
                       in your work? Identifying the problem is the first step
                       towards finding a solution.
@@ -86,7 +86,7 @@ const Day4: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d4a1">
               A response
             </div>
           </IonAccordion>
@@ -96,7 +96,7 @@ const Day4: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">9:00 AM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d4q2" className="blur">
                       How have you historically overcome similar creative
                       blocks? Reflecting on past successes can provide a roadmap
                       for current challenges.
@@ -105,7 +105,7 @@ const Day4: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d4a2">
               Second Content
             </div>
           </IonAccordion>
@@ -116,7 +116,7 @@ const Day4: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">10:00 AM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d4q3" className="blur">
                       Explore a creative problem-solving technique like lateral
                       thinking. How might it apply to your current block?{" "}
                       <i>New approaches can unlock fresh perspectives.</i>
@@ -125,7 +125,7 @@ const Day4: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d4a3">
               Content
             </div>
           </IonAccordion>
@@ -136,7 +136,7 @@ const Day4: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">11:00 AM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d4q4" className="blur">
                       Engage in a peer-to-peer idea exchange. Share a recent
                       idea and receive feedback in the Provision Academy Skool
                       Community.
@@ -145,7 +145,7 @@ const Day4: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d4a4">
               Third Content
             </div>
           </IonAccordion>
@@ -156,7 +156,7 @@ const Day4: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">12:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d4q5" className="blur">
                       How did the feedback from your peer exchange inspire you
                       to think differently about your project?
                     </IonCol>
@@ -164,7 +164,7 @@ const Day4: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d4a5">
               Content
             </div>
           </IonAccordion>
@@ -205,7 +205,7 @@ const Day4: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">1:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d4q6" className="blur">
                       What changes in the media landscape could impact your
                       current projects?{" "}
                       <i>Staying informed helps you adapt and innovate.</i>
@@ -214,7 +214,7 @@ const Day4: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d4a6">
               everything changes
             </div>
           </IonAccordion>
@@ -224,7 +224,7 @@ const Day4: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">2:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d4q7" className="blur">
                       Identify a new narrative form or storytelling platform you
                       would like to explore. What attracts you to it? Exploring
                       new mediums can expand your creative toolkit.
@@ -233,7 +233,7 @@ const Day4: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d4a7">
               Content
             </div>
           </IonAccordion>
@@ -244,7 +244,7 @@ const Day4: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">3:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d4q8" className="blur">
                       How can adapting to these changes potentially expand your
                       audience or creative scope?{" "}
                       <i>Embracing change can lead to new opportunities.</i>
@@ -253,7 +253,7 @@ const Day4: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d4a8">
               Content
             </div>
           </IonAccordion>
@@ -264,7 +264,7 @@ const Day4: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">4:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d4q9" className="blur">
                       Plan a small experiment using a new narrative form or
                       platform. Outline your first steps.
                     </IonCol>
@@ -272,7 +272,7 @@ const Day4: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d4a9">
               Content
             </div>
           </IonAccordion>
@@ -314,7 +314,7 @@ const Day4: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">5:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d4q10" className="blur">
                       Describe an innovative project idea that you haven't yet
                       started. What makes it innovative?{" "}
                       <i>Identifying unique aspects can help you stand out.</i>
@@ -323,7 +323,7 @@ const Day4: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d4a10">
               a response
             </div>
           </IonAccordion>
@@ -333,7 +333,7 @@ const Day4: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">6:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d4q11" className="blur">
                       What resources or collaborations would you need to bring
                       this innovative idea to life.
                     </IonCol>
@@ -341,7 +341,7 @@ const Day4: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d4a11">
               Content
             </div>
           </IonAccordion>
@@ -352,7 +352,7 @@ const Day4: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">7:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d4q12" className="blur">
                       Draft a pitch for your innovative idea. Who would be the
                       audience for this pitch?{" "}
                       <i>
@@ -364,7 +364,7 @@ const Day4: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d4a12">
               Content
             </div>
           </IonAccordion>
@@ -375,7 +375,7 @@ const Day4: React.FC = () => {
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">8:00 PM:</IonCol>
-                    <IonCol>
+                    <IonCol id="d4q13" className="blur">
                       Reflect on the potential impact of your innovative idea.
                       How could it change your creative or professional
                       trajectory?{" "}
@@ -385,7 +385,7 @@ const Day4: React.FC = () => {
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content">
+            <div className="ion-padding" slot="content" id="d4a13">
               Content
             </div>
           </IonAccordion>
