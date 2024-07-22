@@ -28,7 +28,9 @@ import {
 import "../pages/Daily.css";
 import { linkOutline, addOutline } from "ionicons/icons";
 
-const Day7: React.FC = () => {
+const Day7: React.FC<{
+  onDidPresent: () => void;
+}> = ({ onDidPresent }) => {
   const modal = useRef<HTMLIonModalElement>(null);
   const page = useRef(null);
 
@@ -48,6 +50,7 @@ const Day7: React.FC = () => {
       ref={modal}
       trigger="open-modal7"
       presentingElement={presentingElement!}
+      onDidPresent={onDidPresent}
     >
       <IonHeader>
         <IonToolbar>

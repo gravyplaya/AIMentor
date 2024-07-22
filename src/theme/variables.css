@@ -20,8 +20,8 @@ h1 {
 .blur {
   filter: blur(10px);
 }
-.clear {
-  filter: blur(0px);
+.no-blur {
+  filter: none;
 }
 .ion-padding {
   --ion-padding: 16px;

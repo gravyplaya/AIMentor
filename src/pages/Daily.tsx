@@ -36,6 +36,45 @@ import Day7 from "../components/Day7";
 
 import { linkOutline, addOutline } from "ionicons/icons";
 
+import { Storage } from "@ionic/storage";
+const storage = new Storage();
+await storage.create();
+
+const firstRun = await storage.get("firstRun");
+if (firstRun === null) {
+  await storage.set("firstRun", new Date().getTime());
+}
+
+function getTimeDifference(
+  timestamp1: number,
+  timestamp2: number
+): {
+  milliseconds: number;
+  seconds: number;
+  minutes: number;
+  hours: number;
+  days: number;
+} {
+  const difference = Math.abs(timestamp2 - timestamp1);
+
+  return {
+    milliseconds: difference,
+    seconds: Math.floor(difference / 1000),
+    minutes: Math.floor(difference / (1000 * 60)),
+    hours: Math.floor(difference / (1000 * 60 * 60)),
+    days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+  };
+}
+
+const diff = getTimeDifference(firstRun, new Date().getTime());
+
+const currentHour = new Date().getHours();
+
+function showQuestion(day: number, hour: string) {
+  const magicDiv = document.getElementById("d" + day + "q" + hour);
+  magicDiv?.classList.add("no-blur");
+}
+
 const Daily: React.FC = () => {
   const modal = useRef<HTMLIonModalElement>(null);
   const page = useRef(null);
@@ -47,10 +86,30 @@ const Daily: React.FC = () => {
     setPresentingElement(page.current);
   }, []);
 
-  const handleModalPresent = () => {
-    console.log("Modal has been presented");
-
-    // Your function logic here
+  const handleModalPresent = (day: number) => {
+    const hours = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+    const questions = [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+    ];
+    if (diff.days >= day) {
+      hours.forEach((hour, index) => {
+        if (currentHour >= hour) {
+          showQuestion(day, questions[index]);
+        }
+      });
+    }
   };
 
   return (
@@ -86,7 +145,7 @@ const Daily: React.FC = () => {
             <IonCardContent>
               Identify and articulate your core values and creative vision.
             </IonCardContent>
-            <Day1 onDidPresent={handleModalPresent} />
+            <Day1 onDidPresent={() => handleModalPresent(1)} />
           </IonCol>
         </IonRow>
 
@@ -121,7 +180,7 @@ const Daily: React.FC = () => {
               Transform your vision into a structured plan with achievable
               goals.
             </IonCardContent>
-            <Day2 />
+            <Day2 onDidPresent={() => handleModalPresent(2)} />
           </IonCol>
         </IonRow>
 
@@ -154,7 +213,7 @@ const Daily: React.FC = () => {
               Learn to engage your audience and understand the social
               implications of your work.
             </IonCardContent>
-            <Day3 />
+            <Day3 onDidPresent={() => handleModalPresent(3)} />
           </IonCol>
         </IonRow>
 
@@ -188,7 +247,7 @@ const Daily: React.FC = () => {
             <IonCardContent>
               Overcome creative blocks and explore new storytelling techniques.
             </IonCardContent>
-            <Day4 />
+            <Day4 onDidPresent={() => handleModalPresent(4)} />
           </IonCol>
         </IonRow>
 
@@ -223,7 +282,7 @@ const Daily: React.FC = () => {
               Define and refine your personal brand to stand out in the
               industry.
             </IonCardContent>
-            <Day5 />
+            <Day5 onDidPresent={() => handleModalPresent(5)} />
           </IonCol>
         </IonRow>
 
@@ -255,7 +314,7 @@ const Daily: React.FC = () => {
             </IonCardHeader>
 
             <IonCardContent>Reflecting and Planning</IonCardContent>
-            <Day6 />
+            <Day6 onDidPresent={() => handleModalPresent(6)} />
           </IonCol>
         </IonRow>
 
@@ -288,7 +347,7 @@ const Daily: React.FC = () => {
               Regularly reflect on your progress and set future goals to keep
               moving forward.
             </IonCardContent>
-            <Day7 />
+            <Day7 onDidPresent={() => handleModalPresent(7)} />
           </IonCol>
         </IonRow>
       </IonGrid>

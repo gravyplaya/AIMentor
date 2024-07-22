@@ -24,15 +24,22 @@ import {
   IonIcon,
   IonAccordion,
   IonAccordionGroup,
+  IonTextarea,
+  useIonAlert,
 } from "@ionic/react";
 import "../pages/Daily.css";
-import { linkOutline, addOutline } from "ionicons/icons";
+import { addOutline } from "ionicons/icons";
+
+import { useUser } from "@clerk/clerk-react";
 
 const Day1: React.FC<{
   onDidPresent: () => void;
 }> = ({ onDidPresent }) => {
   const modal = useRef<HTMLIonModalElement>(null);
   const page = useRef(null);
+  const [isDisabled, setIsDisabled] = useState(false);
+  const { isSignedIn, user, isLoaded } = useUser();
+  const [presentAlert] = useIonAlert();
 
   const [presentingElement, setPresentingElement] =
     useState<HTMLElement | null>(null);
@@ -44,6 +51,55 @@ const Day1: React.FC<{
   function dismiss() {
     modal.current?.dismiss();
   }
+  const [textarea1, setTextarea1] = useState("");
+  const [textarea2, setTextarea2] = useState("");
+  const [textarea3, setTextarea3] = useState("");
+  const [textarea4, setTextarea4] = useState("");
+  const [textarea5, setTextarea5] = useState("");
+  const [textarea6, setTextarea6] = useState("");
+  const [textarea7, setTextarea7] = useState("");
+  const [textarea8, setTextarea8] = useState("");
+  const [textarea9, setTextarea9] = useState("");
+  const [textarea10, setTextarea10] = useState("");
+  const [textarea11, setTextarea11] = useState("");
+  const [textarea12, setTextarea12] = useState("");
+  const [textarea13, setTextarea13] = useState("");
+
+  let userId: string;
+  if (isLoaded && isSignedIn) {
+    userId = user.id;
+  }
+  const saveResponse = (question: string, answer: string) => {
+    if (!userId) {
+      presentAlert({
+        header: "Error",
+        message: "You must be logged in to do that.",
+        buttons: ["OK"],
+      });
+      return;
+    } else {
+      fetch(
+        "https://nocodb.tavonni.com/api/v2/tables/mrg99nr91g164o1/records",
+        {
+          method: "POST",
+          headers: {
+            accept: "application/json",
+            "xc-auth": import.meta.env.VITE_NOCODB_TOKEN,
+            "xc-token": import.meta.env.VITE_NOCODB_TOKEN,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userId: userId,
+            response: answer,
+            questionId: question,
+          }),
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => console.log(data))
+        .catch((error) => console.error("Error:", error));
+    }
+  };
 
   return (
     <IonModal
@@ -89,10 +145,18 @@ const Day1: React.FC<{
               </IonLabel>
             </IonItem>
             <div className="ion-padding" slot="content" id="d1a1">
-              The core value that drives all my creative projects is
-              authenticity. I believe in being true to myself and my vision,
-              which ensures my work resonates deeply and genuinely with my
-              audience.
+              <IonTextarea
+                disabled={isDisabled}
+                placeholder="Respond here"
+                autoGrow={true}
+                onIonChange={(e) => setTextarea1(e.detail.value!)}
+              ></IonTextarea>
+              <IonButton
+                expand="full"
+                onClick={() => saveResponse("d1q1", textarea1)}
+              >
+                Save
+              </IonButton>
             </div>
           </IonAccordion>
           <IonAccordion>
