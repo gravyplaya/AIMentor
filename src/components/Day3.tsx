@@ -187,7 +187,7 @@ const Day3: React.FC<{
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">Morning Conclusion</IonCol>
-                    <IonCol className="blur">Tap to Review</IonCol>
+                    <IonCol>Tap to Review</IonCol>
                   </IonRow>
                 </IonGrid>
               </IonLabel>
@@ -417,9 +417,7 @@ const Day3: React.FC<{
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">Evening Conclusion</IonCol>
-                    <IonCol id="d3q1" className="blur">
-                      Tap to Review
-                    </IonCol>
+                    <IonCol id="d3q1">Tap to Review</IonCol>
                   </IonRow>
                 </IonGrid>
               </IonLabel>

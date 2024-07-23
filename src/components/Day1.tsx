@@ -28,7 +28,6 @@ import {
   useIonAlert,
 } from "@ionic/react";
 import "../pages/Daily.css";
-import { addOutline } from "ionicons/icons";
 
 import { useUser } from "@clerk/clerk-react";
 
@@ -40,12 +39,14 @@ const Day1: React.FC<{
   const [isDisabled, setIsDisabled] = useState(false);
   const { isSignedIn, user, isLoaded } = useUser();
   const [presentAlert] = useIonAlert();
+  const [responses, setResponses] = useState();
 
   const [presentingElement, setPresentingElement] =
     useState<HTMLElement | null>(null);
 
   useEffect(() => {
     setPresentingElement(page.current);
+    getResponses();
   }, []);
 
   function dismiss() {
@@ -64,6 +65,19 @@ const Day1: React.FC<{
   const [textarea11, setTextarea11] = useState("");
   const [textarea12, setTextarea12] = useState("");
   const [textarea13, setTextarea13] = useState("");
+  const [isAccordion1Disabled, setisAccordion1Disabled] = useState(false);
+  const [isAccordion2Disabled, setisAccordion2Disabled] = useState(false);
+  const [isAccordion3Disabled, setisAccordion3Disabled] = useState(false);
+  const [isAccordion4Disabled, setisAccordion4Disabled] = useState(false);
+  const [isAccordion5Disabled, setisAccordion5Disabled] = useState(false);
+  const [isAccordion6Disabled, setisAccordion6Disabled] = useState(false);
+  const [isAccordion7Disabled, setisAccordion7Disabled] = useState(false);
+  const [isAccordion8Disabled, setisAccordion8Disabled] = useState(false);
+  const [isAccordion9Disabled, setisAccordion9Disabled] = useState(false);
+  const [isAccordion10Disabled, setisAccordion10Disabled] = useState(false);
+  const [isAccordion11Disabled, setisAccordion11Disabled] = useState(false);
+  const [isAccordion12Disabled, setisAccordion12Disabled] = useState(false);
+  const [isAccordion13Disabled, setisAccordion13Disabled] = useState(false);
 
   let userId: string;
   if (isLoaded && isSignedIn) {
@@ -101,6 +115,85 @@ const Day1: React.FC<{
     }
   };
 
+  const getResponses = () => {
+    if (!userId) {
+      presentAlert({
+        header: "Error",
+        message: "You must be logged in to do that.",
+        buttons: ["OK"],
+      });
+      return;
+    } else {
+      fetch(
+        "https://nocodb.tavonni.com/api/v2/tables/mrg99nr91g164o1/records?where=where%3D%28userId%2Ceq%2C" +
+          userId +
+          "%29&limit=25&shuffle=0&offset=0",
+        {
+          method: "GET",
+          headers: {
+            accept: "application/json",
+            "xc-auth": import.meta.env.VITE_NOCODB_TOKEN,
+            "xc-token": import.meta.env.VITE_NOCODB_TOKEN,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          const questions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+          questions.forEach((question, index) => {
+            const q = data.list.find(
+              (q: any) => q.questionId === "d1q" + index
+            );
+
+            if (q && index == 1) {
+              setTextarea1(q.response);
+            }
+            if (q && index == 2) {
+              setTextarea2(q.response);
+            }
+            if (q && index == 3) {
+              setTextarea3(q.response);
+            }
+            if (q && index == 4) {
+              setTextarea4(q.response);
+            }
+            if (q && index == 5) {
+              setTextarea5(q.response);
+            }
+            if (q && index == 6) {
+              setTextarea6(q.response);
+            }
+            if (q && index == 7) {
+              setTextarea7(q.response);
+            }
+            if (q && index == 8) {
+              setTextarea8(q.response);
+            }
+            if (q && index == 9) {
+              setTextarea9(q.response);
+            }
+            if (q && index == 10) {
+              setTextarea10(q.response);
+            }
+            if (q && index == 11) {
+              setTextarea11(q.response);
+            }
+            if (q && index == 12) {
+              setTextarea12(q.response);
+            }
+            if (q && index == 13) {
+              setTextarea13(q.response);
+            }
+          });
+          // const q = data.list.find((q: any) => q.questionId === "d1q1");
+          // setTextarea1(q.response);
+          // console.log(q.response);
+        })
+        .catch((error) => console.error("Error:", error));
+    }
+  };
+
   return (
     <IonModal
       ref={modal}
@@ -130,7 +223,7 @@ const Day1: React.FC<{
           </IonCardContent>
         </IonCard>
         <IonAccordionGroup>
-          <IonAccordion>
+          <IonAccordion disabled={isAccordion1Disabled}>
             <IonItem slot="header">
               <IonLabel>
                 <IonGrid>
@@ -146,8 +239,8 @@ const Day1: React.FC<{
             </IonItem>
             <div className="ion-padding" slot="content" id="d1a1">
               <IonTextarea
-                disabled={isDisabled}
                 placeholder="Respond here"
+                value={textarea1}
                 autoGrow={true}
                 onIonChange={(e) => setTextarea1(e.detail.value!)}
               ></IonTextarea>
@@ -159,7 +252,7 @@ const Day1: React.FC<{
               </IonButton>
             </div>
           </IonAccordion>
-          <IonAccordion>
+          <IonAccordion disabled={isAccordion2Disabled}>
             <IonItem slot="header">
               <IonLabel>
                 <IonGrid>
@@ -175,10 +268,21 @@ const Day1: React.FC<{
               </IonLabel>
             </IonItem>
             <div className="ion-padding" slot="content" id="d1a2">
-              Second Content
+              <IonTextarea
+                placeholder="Respond here"
+                autoGrow={true}
+                value={textarea2}
+                onIonChange={(e) => setTextarea2(e.detail.value!)}
+              ></IonTextarea>
+              <IonButton
+                expand="full"
+                onClick={() => saveResponse("d1q2", textarea2)}
+              >
+                Save
+              </IonButton>
             </div>
           </IonAccordion>
-          <IonAccordion>
+          <IonAccordion disabled={isAccordion3Disabled}>
             <IonItem slot="header">
               <IonLabel>
                 {" "}
@@ -196,10 +300,21 @@ const Day1: React.FC<{
               </IonLabel>
             </IonItem>
             <div className="ion-padding" slot="content" id="d1a3">
-              Third Content
+              <IonTextarea
+                placeholder="Respond here"
+                autoGrow={true}
+                value={textarea3}
+                onIonChange={(e) => setTextarea3(e.detail.value!)}
+              ></IonTextarea>
+              <IonButton
+                expand="full"
+                onClick={() => saveResponse("d1q3", textarea3)}
+              >
+                Save
+              </IonButton>
             </div>
           </IonAccordion>
-          <IonAccordion>
+          <IonAccordion disabled={isAccordion4Disabled}>
             <IonItem slot="header">
               <IonLabel>
                 {" "}
@@ -217,10 +332,21 @@ const Day1: React.FC<{
               </IonLabel>
             </IonItem>
             <div className="ion-padding" slot="content" id="d1a4">
-              Third Content
+              <IonTextarea
+                placeholder="Respond here"
+                autoGrow={true}
+                value={textarea4}
+                onIonChange={(e) => setTextarea4(e.detail.value!)}
+              ></IonTextarea>
+              <IonButton
+                expand="full"
+                onClick={() => saveResponse("d1q4", textarea4)}
+              >
+                Save
+              </IonButton>
             </div>
           </IonAccordion>
-          <IonAccordion>
+          <IonAccordion disabled={isAccordion5Disabled}>
             <IonItem slot="header">
               <IonLabel>
                 {" "}
@@ -237,7 +363,18 @@ const Day1: React.FC<{
               </IonLabel>
             </IonItem>
             <div className="ion-padding" slot="content" id="d1a5">
-              Third Content
+              <IonTextarea
+                placeholder="Respond here"
+                autoGrow={true}
+                value={textarea5}
+                onIonChange={(e) => setTextarea5(e.detail.value!)}
+              ></IonTextarea>
+              <IonButton
+                expand="full"
+                onClick={() => saveResponse("d1q5", textarea5)}
+              >
+                Save
+              </IonButton>
             </div>
           </IonAccordion>
           <IonAccordion>
@@ -272,7 +409,7 @@ const Day1: React.FC<{
           </IonCardContent>
         </IonCard>
         <IonAccordionGroup>
-          <IonAccordion toggleIcon={addOutline}>
+          <IonAccordion disabled={isAccordion6Disabled}>
             <IonItem slot="header">
               <IonLabel>
                 <IonGrid>
@@ -288,13 +425,21 @@ const Day1: React.FC<{
               </IonLabel>
             </IonItem>
             <div className="ion-padding" slot="content" id="d1a6">
-              The core value that drives all my creative projects is
-              authenticity. I believe in being true to myself and my vision,
-              which ensures my work resonates deeply and genuinely with my
-              audience.
+              <IonTextarea
+                placeholder="Respond here"
+                autoGrow={true}
+                value={textarea6}
+                onIonChange={(e) => setTextarea6(e.detail.value!)}
+              ></IonTextarea>
+              <IonButton
+                expand="full"
+                onClick={() => saveResponse("d1q6", textarea6)}
+              >
+                Save
+              </IonButton>
             </div>
           </IonAccordion>
-          <IonAccordion>
+          <IonAccordion disabled={isAccordion7Disabled}>
             <IonItem slot="header">
               <IonLabel>
                 <IonGrid>
@@ -310,13 +455,23 @@ const Day1: React.FC<{
               </IonLabel>
             </IonItem>
             <div className="ion-padding" slot="content" id="d1a7">
-              Second Content
+              <IonTextarea
+                placeholder="Respond here"
+                autoGrow={true}
+                value={textarea7}
+                onIonChange={(e) => setTextarea7(e.detail.value!)}
+              ></IonTextarea>
+              <IonButton
+                expand="full"
+                onClick={() => saveResponse("d1q7", textarea7)}
+              >
+                Save
+              </IonButton>
             </div>
           </IonAccordion>
-          <IonAccordion>
+          <IonAccordion disabled={isAccordion8Disabled}>
             <IonItem slot="header">
               <IonLabel>
-                {" "}
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">3:00 PM:</IonCol>
@@ -330,13 +485,23 @@ const Day1: React.FC<{
               </IonLabel>
             </IonItem>
             <div className="ion-padding" slot="content" id="d1a8">
-              Third Content
+              <IonTextarea
+                placeholder="Respond here"
+                autoGrow={true}
+                value={textarea8}
+                onIonChange={(e) => setTextarea8(e.detail.value!)}
+              ></IonTextarea>
+              <IonButton
+                expand="full"
+                onClick={() => saveResponse("d1q8", textarea8)}
+              >
+                Save
+              </IonButton>
             </div>
           </IonAccordion>
-          <IonAccordion>
+          <IonAccordion disabled={isAccordion9Disabled}>
             <IonItem slot="header">
               <IonLabel>
-                {" "}
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">4:00 PM:</IonCol>
@@ -349,13 +514,23 @@ const Day1: React.FC<{
               </IonLabel>
             </IonItem>
             <div className="ion-padding" slot="content" id="d1a9">
-              Third Content
+              <IonTextarea
+                placeholder="Respond here"
+                autoGrow={true}
+                value={textarea9}
+                onIonChange={(e) => setTextarea9(e.detail.value!)}
+              ></IonTextarea>
+              <IonButton
+                expand="full"
+                onClick={() => saveResponse("d1q9", textarea9)}
+              >
+                Save
+              </IonButton>
             </div>
           </IonAccordion>
           <IonAccordion>
             <IonItem slot="header">
               <IonLabel>
-                {" "}
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">Afternoon Conclusion</IonCol>
@@ -384,7 +559,7 @@ const Day1: React.FC<{
           </IonCardContent>
         </IonCard>
         <IonAccordionGroup>
-          <IonAccordion toggleIcon={addOutline}>
+          <IonAccordion disabled={isAccordion10Disabled}>
             <IonItem slot="header">
               <IonLabel>
                 <IonGrid>
@@ -400,13 +575,21 @@ const Day1: React.FC<{
               </IonLabel>
             </IonItem>
             <div className="ion-padding" slot="content" id="d1a10">
-              The core value that drives all my creative projects is
-              authenticity. I believe in being true to myself and my vision,
-              which ensures my work resonates deeply and genuinely with my
-              audience.
+              <IonTextarea
+                placeholder="Respond here"
+                autoGrow={true}
+                value={textarea10}
+                onIonChange={(e) => setTextarea10(e.detail.value!)}
+              ></IonTextarea>
+              <IonButton
+                expand="full"
+                onClick={() => saveResponse("d1q10", textarea10)}
+              >
+                Save
+              </IonButton>
             </div>
           </IonAccordion>
-          <IonAccordion>
+          <IonAccordion disabled={isAccordion11Disabled}>
             <IonItem slot="header">
               <IonLabel>
                 <IonGrid>
@@ -421,10 +604,21 @@ const Day1: React.FC<{
               </IonLabel>
             </IonItem>
             <div className="ion-padding" slot="content" id="d1a11">
-              Second Content
+              <IonTextarea
+                placeholder="Respond here"
+                autoGrow={true}
+                value={textarea11}
+                onIonChange={(e) => setTextarea11(e.detail.value!)}
+              ></IonTextarea>
+              <IonButton
+                expand="full"
+                onClick={() => saveResponse("d1q11", textarea11)}
+              >
+                Save
+              </IonButton>
             </div>
           </IonAccordion>
-          <IonAccordion>
+          <IonAccordion disabled={isAccordion12Disabled}>
             <IonItem slot="header">
               <IonLabel>
                 {" "}
@@ -440,13 +634,23 @@ const Day1: React.FC<{
               </IonLabel>
             </IonItem>
             <div className="ion-padding" slot="content" id="d1a12">
-              Third Content
+              <IonTextarea
+                placeholder="Respond here"
+                autoGrow={true}
+                value={textarea12}
+                onIonChange={(e) => setTextarea12(e.detail.value!)}
+              ></IonTextarea>
+              <IonButton
+                expand="full"
+                onClick={() => saveResponse("d1q12", textarea12)}
+              >
+                Save
+              </IonButton>{" "}
             </div>
           </IonAccordion>
-          <IonAccordion>
+          <IonAccordion disabled={isAccordion13Disabled}>
             <IonItem slot="header">
               <IonLabel>
-                {" "}
                 <IonGrid>
                   <IonRow>
                     <IonCol size="auto">8:00 PM:</IonCol>
@@ -460,7 +664,18 @@ const Day1: React.FC<{
               </IonLabel>
             </IonItem>
             <div className="ion-padding" slot="content" id="d1a13">
-              Third Content
+              <IonTextarea
+                placeholder="Respond here"
+                autoGrow={true}
+                value={textarea13}
+                onIonChange={(e) => setTextarea13(e.detail.value!)}
+              ></IonTextarea>
+              <IonButton
+                expand="full"
+                onClick={() => saveResponse("d1q13", textarea13)}
+              >
+                Save
+              </IonButton>
             </div>
           </IonAccordion>
           <IonAccordion>
