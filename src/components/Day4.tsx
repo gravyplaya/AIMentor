@@ -34,7 +34,6 @@ import { useUser } from "@clerk/clerk-react";
 const Day4: React.FC<{
   onDidPresent: () => void;
 }> = ({ onDidPresent }) => {
-  console.log(onDidPresent);
   const modal = useRef<HTMLIonModalElement>(null);
   const page = useRef(null);
   const [isDisabled, setIsDisabled] = useState(false);

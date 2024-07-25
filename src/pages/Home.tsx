@@ -122,10 +122,18 @@ const Home: React.FC = () => {
               <div className="full-height magical-column right-row-pt">
                 {" "}
                 <IonButtons className="button-container">
-                  <IonButton>
+                  <IonButton
+                    href="https://www.instagram.com/academyofprovision/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <IonIcon icon={logoInstagram} />
                   </IonButton>
-                  <IonButton>
+                  <IonButton
+                    href="https://www.skool.com/provision-academy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <IonIcon icon={basketballOutline} />
                   </IonButton>
                 </IonButtons>

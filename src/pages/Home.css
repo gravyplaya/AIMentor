@@ -72,3 +72,10 @@
   gap: 30px;
   padding: 30vh 0;
 }
+.horizontal-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+ion-card {
+  background-color: "#0A0A0B";
+}

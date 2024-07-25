@@ -17,7 +17,9 @@ import {
   IonText,
   IonIcon,
   IonImg,
+  IonNote,
 } from "@ionic/react";
+import { mailOutline } from "ionicons/icons";
 
 const ContentCol: React.FC = () => {
   return (
@@ -35,9 +37,37 @@ const ContentCol: React.FC = () => {
           <IonCol size="12" sizeSm="6">
             <h1>👋🏾 Welcome to 7 Days To Visionary</h1>Congratulations on taking
             the first step towards unlocking your full potential as a filmmaker.
-            Welcome to our deviate mentorship experience, designed to explore
-            your interpersonal abilities and deepen your understanding of the
+            Welcome to our mentorship experience, designed to explore your
+            interpersonal abilities and deepen your understanding of the
             psychology behind successful storytelling.
+            <div className="horizontal-buttons ion-padding-vertical">
+              <IonButton
+                expand="block"
+                href="mailto:contact@jordanoramdp.com"
+                className="ion-padding-horizontal"
+              >
+                <IonIcon
+                  slot="start"
+                  src="/images/email.svg"
+                  size="large"
+                  style={{ paddingTop: "10px" }}
+                ></IonIcon>
+                MESSAGE ME
+              </IonButton>
+              <IonButton
+                expand="block"
+                href="https://cal.com/jordan-oram/30min"
+                className="ion-padding-horizontal"
+              >
+                <IonIcon
+                  slot="start"
+                  src="/images/schedule.svg"
+                  size="large"
+                  style={{ paddingTop: "10px" }}
+                ></IonIcon>
+                SCHEDULE CALL
+              </IonButton>
+            </div>
           </IonCol>
         </IonRow>
       </IonGrid>
@@ -46,26 +76,26 @@ const ContentCol: React.FC = () => {
         <IonRow>
           <IonCol>
             <IonCard className="ion-text-center">
-              <h2 color="white">7 Days</h2>
-              <h3>Consistency</h3>
+              <h2>7 Days</h2>
+              <IonNote>Consistency</IonNote>
             </IonCard>
           </IonCol>
           <IonCol>
             <IonCard className="ion-text-center">
               <h2>84+ Hours</h2>
-              <h3>Dicipline</h3>
+              <IonNote>Dicipline</IonNote>
             </IonCard>
           </IonCol>
           <IonCol>
             <IonCard className="ion-text-center">
               <h2>1:1 </h2>
-              <h3>Personalized Feedback</h3>
+              <IonNote>Personalized Feedback</IonNote>
             </IonCard>
           </IonCol>
           <IonCol>
             <IonCard className="ion-text-center">
               <h2>1 Vision Map</h2>
-              <h3>Precision</h3>
+              <IonNote>Precision</IonNote>
             </IonCard>
           </IonCol>
         </IonRow>
@@ -196,7 +226,7 @@ const ContentCol: React.FC = () => {
                 </IonCardTitle>
               </IonCardHeader>
               <IonCardContent className="ion-text-left animated-text">
-                Each day, you’ll receive carefully designed prompts and tasks to
+                Each day, you'll receive carefully designed prompts and tasks to
                 build your skills and knowledge systematically.
               </IonCardContent>
             </IonCard>

@@ -212,7 +212,7 @@ const Day3: React.FC<{
           </IonCardContent>
         </IonCard>
         <IonAccordionGroup>
-          <IonAccordion toggleIcon={addOutline}>
+          <IonAccordion>
             <IonItem slot="header">
               <IonLabel>
                 <IonGrid>
@@ -328,7 +328,7 @@ const Day3: React.FC<{
           </IonCardContent>
         </IonCard>
         <IonAccordionGroup>
-          <IonAccordion toggleIcon={addOutline}>
+          <IonAccordion>
             <IonItem slot="header">
               <IonLabel>
                 <IonGrid>
@@ -422,7 +422,7 @@ const Day3: React.FC<{
                 </IonGrid>
               </IonLabel>
             </IonItem>
-            <div className="ion-padding" slot="content" id="d3q1">
+            <div className="ion-padding" slot="content">
               By the end of the evening, you will have evaluated effective
               networking strategies, identified potential collaborators, planned
               to strengthen your network, and reflected on your networking

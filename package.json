@@ -1,5 +1,5 @@
 {
-  "name": "AImentor",
+  "name": "7DTV",
   "private": true,
   "version": "0.0.1",
   "type": "module",
@@ -54,5 +54,5 @@
     "vite-plugin-pwa": "^0.20.0",
     "vitest": "^0.34.6"
   },
-  "description": "An Ionic project"
+  "description": "7 Days To Visionary"
 }

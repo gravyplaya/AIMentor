@@ -40,6 +40,9 @@ const Day1: React.FC<{
   const { isSignedIn, user, isLoaded } = useUser();
   const [presentAlert] = useIonAlert();
   const [responses, setResponses] = useState();
+  const accordionGroupRef1 = useRef<HTMLIonAccordionGroupElement | null>(null);
+  const accordionGroupRef2 = useRef<HTMLIonAccordionGroupElement | null>(null);
+  const accordionGroupRef3 = useRef<HTMLIonAccordionGroupElement | null>(null);
 
   const [presentingElement, setPresentingElement] =
     useState<HTMLElement | null>(null);
@@ -47,6 +50,7 @@ const Day1: React.FC<{
   useEffect(() => {
     setPresentingElement(page.current);
     getResponses();
+    disableAccordionById("accordian1");
   }, []);
 
   function dismiss() {
@@ -193,7 +197,26 @@ const Day1: React.FC<{
         .catch((error) => console.error("Error:", error));
     }
   };
+  const disableAccordionById = async (id: any) => {
+    const accordionGroups = [
+      accordionGroupRef1.current,
+      accordionGroupRef2.current,
+    ];
 
+    for (const group of accordionGroups) {
+      if (group) {
+        console.log(group);
+        const accordions = await group.getAccordions();
+        const targetAccordion = accordions.find(
+          (accordion) => accordion.value === id
+        );
+        if (targetAccordion) {
+          targetAccordion.disabled = true;
+          break;
+        }
+      }
+    }
+  };
   return (
     <IonModal
       ref={modal}
@@ -222,8 +245,8 @@ const Day1: React.FC<{
             Identify and articulate personal passions.
           </IonCardContent>
         </IonCard>
-        <IonAccordionGroup>
-          <IonAccordion disabled={isAccordion1Disabled}>
+        <IonAccordionGroup ref={accordionGroupRef1}>
+          <IonAccordion value="accordian1">
             <IonItem slot="header">
               <IonLabel>
                 <IonGrid>
@@ -252,7 +275,7 @@ const Day1: React.FC<{
               </IonButton>
             </div>
           </IonAccordion>
-          <IonAccordion disabled={isAccordion2Disabled}>
+          <IonAccordion value="accordian2">
             <IonItem slot="header">
               <IonLabel>
                 <IonGrid>
@@ -282,7 +305,7 @@ const Day1: React.FC<{
               </IonButton>
             </div>
           </IonAccordion>
-          <IonAccordion disabled={isAccordion3Disabled}>
+          <IonAccordion value="accordian3">
             <IonItem slot="header">
               <IonLabel>
                 {" "}
@@ -314,7 +337,7 @@ const Day1: React.FC<{
               </IonButton>
             </div>
           </IonAccordion>
-          <IonAccordion disabled={isAccordion4Disabled}>
+          <IonAccordion value="accordian4">
             <IonItem slot="header">
               <IonLabel>
                 {" "}
@@ -346,7 +369,7 @@ const Day1: React.FC<{
               </IonButton>
             </div>
           </IonAccordion>
-          <IonAccordion disabled={isAccordion5Disabled}>
+          <IonAccordion value="accordian5">
             <IonItem slot="header">
               <IonLabel>
                 {" "}
@@ -408,8 +431,8 @@ const Day1: React.FC<{
             Reflect on life's fulfilling moments and future aspirations.
           </IonCardContent>
         </IonCard>
-        <IonAccordionGroup>
-          <IonAccordion disabled={isAccordion6Disabled}>
+        <IonAccordionGroup ref={accordionGroupRef2}>
+          <IonAccordion value="accordian6">
             <IonItem slot="header">
               <IonLabel>
                 <IonGrid>
@@ -558,7 +581,7 @@ const Day1: React.FC<{
             Setting intentions and confronting personal doubts.
           </IonCardContent>
         </IonCard>
-        <IonAccordionGroup>
+        <IonAccordionGroup ref={accordionGroupRef3}>
           <IonAccordion disabled={isAccordion10Disabled}>
             <IonItem slot="header">
               <IonLabel>

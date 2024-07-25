@@ -30,16 +30,54 @@ import { linkOutline, addOutline } from "ionicons/icons";
 
 const Day5: React.FC<{
   onDidPresent: () => void;
-}> = ({ onDidPresent }) => {
+  currentSpot: any;
+}> = ({ onDidPresent, currentSpot }) => {
   const modal = useRef<HTMLIonModalElement>(null);
   const page = useRef(null);
 
   const [presentingElement, setPresentingElement] =
     useState<HTMLElement | null>(null);
 
+  const accordionGroupRef1 = useRef<HTMLIonAccordionGroupElement | null>(null);
+  const accordionGroupRef2 = useRef<HTMLIonAccordionGroupElement | null>(null);
+  const accordionGroupRef3 = useRef<HTMLIonAccordionGroupElement | null>(null);
+
+  const disableAccordionById = async (id: any) => {
+    const accordionGroups = [
+      accordionGroupRef1.current,
+      accordionGroupRef2.current,
+      accordionGroupRef3.current,
+    ];
+
+    for (const group of accordionGroups) {
+      if (group) {
+        const accordions = await group.getAccordions();
+        const targetAccordion = accordions.find(
+          (accordion) => accordion.value === id
+        );
+        if (targetAccordion) {
+          targetAccordion.disabled = true;
+          break;
+        }
+      }
+    }
+  };
+
   useEffect(() => {
     setPresentingElement(page.current);
-  }, []);
+    if (currentSpot.includes("d5")) {
+      const currentHour = currentSpot.substring(3);
+
+      const hours = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+      const questions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+      hours.forEach((hour, index) => {
+        if (hour >= currentHour) {
+          console.log("disable: ", index, questions[index]);
+          disableAccordionById("accordian" + questions[index]);
+        }
+      });
+    }
+  }, [currentSpot]);
 
   function dismiss() {
     modal.current?.dismiss();
@@ -73,8 +111,8 @@ const Day5: React.FC<{
             Define and refine personal brand.
           </IonCardContent>
         </IonCard>
-        <IonAccordionGroup>
-          <IonAccordion>
+        <IonAccordionGroup ref={accordionGroupRef1}>
+          <IonAccordion value="accordian1">
             <IonItem slot="header">
               <IonLabel>
                 <IonGrid>
@@ -92,7 +130,7 @@ const Day5: React.FC<{
               these three words
             </div>
           </IonAccordion>
-          <IonAccordion>
+          <IonAccordion value="accordian2">
             <IonItem slot="header">
               <IonLabel>
                 <IonGrid>
@@ -114,7 +152,7 @@ const Day5: React.FC<{
               Content
             </div>
           </IonAccordion>
-          <IonAccordion>
+          <IonAccordion value="accordian3">
             <IonItem slot="header">
               <IonLabel>
                 {" "}
@@ -136,7 +174,7 @@ const Day5: React.FC<{
               Content
             </div>
           </IonAccordion>
-          <IonAccordion>
+          <IonAccordion value="accordian4">
             <IonItem slot="header">
               <IonLabel>
                 {" "}
@@ -156,7 +194,7 @@ const Day5: React.FC<{
               Content
             </div>
           </IonAccordion>
-          <IonAccordion>
+          <IonAccordion value="accordian5">
             <IonItem slot="header">
               <IonLabel>
                 {" "}
@@ -209,8 +247,8 @@ const Day5: React.FC<{
             Enhance online presence and marketing strategies.
           </IonCardContent>
         </IonCard>
-        <IonAccordionGroup>
-          <IonAccordion toggleIcon={addOutline}>
+        <IonAccordionGroup ref={accordionGroupRef2}>
+          <IonAccordion value="accordian6">
             <IonItem slot="header">
               <IonLabel>
                 <IonGrid>
@@ -229,7 +267,7 @@ const Day5: React.FC<{
               yesirr
             </div>
           </IonAccordion>
-          <IonAccordion>
+          <IonAccordion value="accordian7">
             <IonItem slot="header">
               <IonLabel>
                 <IonGrid>
@@ -248,7 +286,7 @@ const Day5: React.FC<{
               Content
             </div>
           </IonAccordion>
-          <IonAccordion>
+          <IonAccordion value="accordian8">
             <IonItem slot="header">
               <IonLabel>
                 {" "}
@@ -268,7 +306,7 @@ const Day5: React.FC<{
               Content
             </div>
           </IonAccordion>
-          <IonAccordion>
+          <IonAccordion value="accordian9">
             <IonItem slot="header">
               <IonLabel>
                 {" "}
@@ -317,8 +355,8 @@ const Day5: React.FC<{
             Reflect on branding efforts and plan improvements.
           </IonCardContent>
         </IonCard>
-        <IonAccordionGroup>
-          <IonAccordion toggleIcon={addOutline}>
+        <IonAccordionGroup ref={accordionGroupRef3}>
+          <IonAccordion value="accordian10">
             <IonItem slot="header">
               <IonLabel>
                 <IonGrid>
@@ -339,7 +377,7 @@ const Day5: React.FC<{
               my challenges are
             </div>
           </IonAccordion>
-          <IonAccordion>
+          <IonAccordion value="accordian11">
             <IonItem slot="header">
               <IonLabel>
                 <IonGrid>
@@ -357,7 +395,7 @@ const Day5: React.FC<{
               Content
             </div>
           </IonAccordion>
-          <IonAccordion>
+          <IonAccordion value="accordian12">
             <IonItem slot="header">
               <IonLabel>
                 {" "}
@@ -376,7 +414,7 @@ const Day5: React.FC<{
               Content
             </div>
           </IonAccordion>
-          <IonAccordion>
+          <IonAccordion value="accordian13">
             <IonItem slot="header">
               <IonLabel>
                 {" "}

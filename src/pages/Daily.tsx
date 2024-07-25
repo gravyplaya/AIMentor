@@ -41,9 +41,9 @@ const storage = new Storage();
 await storage.create();
 
 const firstRun = await storage.get("firstRun");
-if (firstRun === null) {
-  await storage.set("firstRun", new Date().getTime());
-}
+// if (firstRun === null) {
+//   await storage.set("firstRun", new Date().getTime());
+// }
 
 function getTimeDifference(
   timestamp1: number,
@@ -69,11 +69,7 @@ function getTimeDifference(
 const diff = getTimeDifference(firstRun, new Date().getTime());
 
 const currentHour = new Date().getHours();
-
-function showQuestion(day: number, hour: number) {
-  const magicDiv = document.getElementById("d" + day + "q" + hour);
-  magicDiv?.classList.add("no-blur");
-}
+const currentSpot = "d" + diff.days + "h" + currentHour;
 
 const Daily: React.FC = () => {
   const modal = useRef<HTMLIonModalElement>(null);
@@ -86,17 +82,26 @@ const Daily: React.FC = () => {
     setPresentingElement(page.current);
   }, []);
 
-  const handleModalPresent = (day: number) => {
+  function showQuestion(day: number, hour: number) {
+    const magicDiv = document.getElementById("d" + day + "q" + hour);
+    magicDiv?.classList.add("no-blur");
+  }
+
+  const handleModalPresent = async (day: number) => {
     const hours = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
     const questions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
-    hours.forEach((hour, index) => {
-      if (diff.days > day) {
-        showQuestion(day, questions[index]);
-      }
-      if (diff.days == day && hours[index] <= currentHour) {
-        showQuestion(day, questions[index]);
-      }
-    });
+    if (firstRun === null) {
+      return;
+    } else {
+      hours.forEach((hour, index) => {
+        if (diff.days > day) {
+          showQuestion(day, questions[index]);
+        }
+        if (diff.days == day && hours[index] <= currentHour) {
+          showQuestion(day, questions[index]);
+        }
+      });
+    }
   };
 
   return (
@@ -269,7 +274,10 @@ const Daily: React.FC = () => {
               Define and refine your personal brand to stand out in the
               industry.
             </IonCardContent>
-            <Day5 onDidPresent={() => handleModalPresent(5)} />
+            <Day5
+              onDidPresent={() => handleModalPresent(5)}
+              currentSpot={currentSpot}
+            />
           </IonCol>
         </IonRow>
 

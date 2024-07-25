@@ -199,7 +199,7 @@ const Day7: React.FC<{
           </IonCardContent>
         </IonCard>
         <IonAccordionGroup>
-          <IonAccordion toggleIcon={addOutline}>
+          <IonAccordion>
             <IonItem slot="header">
               <IonLabel>
                 <IonGrid>
@@ -307,7 +307,7 @@ const Day7: React.FC<{
           </IonCardContent>
         </IonCard>
         <IonAccordionGroup>
-          <IonAccordion toggleIcon={addOutline}>
+          <IonAccordion>
             <IonItem slot="header">
               <IonLabel>
                 <IonGrid>

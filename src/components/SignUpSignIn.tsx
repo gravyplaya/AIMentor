@@ -13,7 +13,7 @@ const SignUpSignIn: React.FC = () => {
   const { isSignedIn, user, isLoaded } = useUser();
 
   return (
-    <header>
+    <div className="ion-margin-start">
       <SignedOut>
         <SignInButton>
           <IonButton>Sign In</IonButton>
@@ -25,7 +25,7 @@ const SignUpSignIn: React.FC = () => {
       {/* {isSignedIn && (
     <p>Welcome back, {user?.firstName}!</p>
   )} */}
-    </header>
+    </div>
   );
 };
 
