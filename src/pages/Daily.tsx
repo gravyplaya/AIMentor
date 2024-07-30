@@ -1,18 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import {
-  IonButtons,
   IonButton,
-  IonModal,
-  IonHeader,
-  IonContent,
-  IonToolbar,
-  IonTitle,
-  IonPage,
-  IonList,
-  IonItem,
-  IonLabel,
-  IonAvatar,
-  IonImg,
   IonCard,
   IonCardContent,
   IonCardHeader,
@@ -22,8 +10,6 @@ import {
   IonGrid,
   IonRow,
   IonIcon,
-  IonAccordion,
-  IonAccordionGroup,
 } from "@ionic/react";
 import "./Daily.css";
 import Day1 from "../components/Day1";
@@ -74,6 +60,11 @@ const currentSpot = "d" + diff.days + "h" + currentHour;
 const Daily: React.FC = () => {
   const modal = useRef<HTMLIonModalElement>(null);
   const page = useRef(null);
+  const [disabledAccordions, setDisabledAccordions] = useState({
+    accordion1: false,
+    accordion2: false,
+    accordion3: false,
+  });
 
   const [presentingElement, setPresentingElement] =
     useState<HTMLElement | null>(null);
@@ -86,6 +77,15 @@ const Daily: React.FC = () => {
     const magicDiv = document.getElementById("d" + day + "q" + hour);
     magicDiv?.classList.add("no-blur");
   }
+  const toggleAccordionDisabled = useCallback(
+    (accordionId: "accordion1" | "accordion2" | "accordion3") => {
+      setDisabledAccordions((prevState) => ({
+        ...prevState,
+        [accordionId]: !prevState[accordionId],
+      }));
+    },
+    []
+  );
 
   const handleModalPresent = async (day: number) => {
     const hours = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];

@@ -36,7 +36,6 @@ const Day4: React.FC<{
 }> = ({ onDidPresent }) => {
   const modal = useRef<HTMLIonModalElement>(null);
   const page = useRef(null);
-  const [isDisabled, setIsDisabled] = useState(false);
   const [presentAlert] = useIonAlert();
   const { isSignedIn, user, isLoaded } = useUser();
 
@@ -91,36 +90,57 @@ const Day4: React.FC<{
       });
       return;
     } else {
-      fetch(
-        "https://nocodb.tavonni.com/api/v2/tables/mrg99nr91g164o1/records",
-        {
-          method: "POST",
-          headers: {
-            accept: "application/json",
-            "xc-auth": import.meta.env.VITE_NOCODB_TOKEN,
-            "xc-token": import.meta.env.VITE_NOCODB_TOKEN,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            userId: userId,
-            response: answer,
-            questionId: question,
-          }),
+      hasAnswer(question).then((answerExists) => {
+        if (answerExists == false) {
+          fetch(
+            "https://nocodb.tavonni.com/api/v2/tables/mrg99nr91g164o1/records",
+            {
+              method: "POST",
+              headers: {
+                accept: "application/json",
+                "xc-auth": import.meta.env.VITE_NOCODB_TOKEN,
+                "xc-token": import.meta.env.VITE_NOCODB_TOKEN,
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                userId: userId,
+                response: answer,
+                questionId: question,
+              }),
+            }
+          )
+            .then((response) => response.json())
+            .then((data) => console.log(data))
+            .catch((error) => console.error("Error:", error));
+        } else {
+          fetch(
+            "https://nocodb.tavonni.com/api/v2/tables/mrg99nr91g164o1/records",
+            {
+              method: "PATCH",
+              headers: {
+                accept: "application/json",
+                "xc-auth": import.meta.env.VITE_NOCODB_TOKEN,
+                "xc-token": import.meta.env.VITE_NOCODB_TOKEN,
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                Id: answerExists,
+                userId: userId,
+                response: answer,
+                questionId: question,
+              }),
+            }
+          )
+            .then((response) => response.json())
+            .then((data) => console.log(data))
+            .catch((error) => console.error("Error:", error));
         }
-      )
-        .then((response) => response.json())
-        .then((data) => console.log(data))
-        .catch((error) => console.error("Error:", error));
+      });
     }
   };
 
   const getResponses = () => {
     if (!userId) {
-      presentAlert({
-        header: "Error",
-        message: "You must be logged in to do that.",
-        buttons: ["OK"],
-      });
       return;
     } else {
       fetch(
@@ -144,7 +164,6 @@ const Day4: React.FC<{
             const q = data.list.find(
               (q: any) => q.questionId === "d4q" + index
             );
-
             if (q && index == 1) {
               setTextarea1(q.response);
             }
@@ -187,6 +206,35 @@ const Day4: React.FC<{
           });
         })
         .catch((error) => console.error("Error:", error));
+    }
+  };
+
+  const hasAnswer = async (qid: string): Promise<boolean> => {
+    if (!userId) {
+      return false; // Return false if userId is not available
+    } else {
+      const response = await fetch(
+        "https://nocodb.tavonni.com/api/v2/tables/mrg99nr91g164o1/records?where=where%3D%28userId%2Ceq%2C" +
+          userId +
+          "%29~and%28questionId%2Ceq%2C" +
+          qid +
+          "%29&limit=25&shuffle=0&offset=0",
+        {
+          method: "GET",
+          headers: {
+            accept: "application/json",
+            "xc-auth": import.meta.env.VITE_NOCODB_TOKEN,
+            "xc-token": import.meta.env.VITE_NOCODB_TOKEN,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      if (data.list.length >= 1) {
+        return data.list[0].Id;
+      } else {
+        return false;
+      }
     }
   };
 
@@ -245,7 +293,7 @@ const Day4: React.FC<{
                 expand="full"
                 onClick={() => saveResponse("d4q1", textarea1)}
               >
-                Save
+                {textarea1 ? "Update" : "Save"}
               </IonButton>
             </div>
           </IonAccordion>
@@ -275,7 +323,7 @@ const Day4: React.FC<{
                 expand="full"
                 onClick={() => saveResponse("d4q2", textarea2)}
               >
-                Save
+                {textarea2 ? "Update" : "Save"}
               </IonButton>
             </div>
           </IonAccordion>
@@ -305,7 +353,7 @@ const Day4: React.FC<{
                 expand="full"
                 onClick={() => saveResponse("d4q3", textarea3)}
               >
-                Save
+                {textarea3 ? "Update" : "Save"}
               </IonButton>
             </div>
           </IonAccordion>
@@ -335,7 +383,7 @@ const Day4: React.FC<{
                 expand="full"
                 onClick={() => saveResponse("d4q4", textarea4)}
               >
-                Save
+                {textarea4 ? "Update" : "Save"}
               </IonButton>
             </div>
           </IonAccordion>
@@ -365,7 +413,7 @@ const Day4: React.FC<{
                 expand="full"
                 onClick={() => saveResponse("d4q5", textarea5)}
               >
-                Save
+                {textarea5 ? "Update" : "Save"}
               </IonButton>
             </div>
           </IonAccordion>
@@ -425,7 +473,7 @@ const Day4: React.FC<{
                 expand="full"
                 onClick={() => saveResponse("d4q6", textarea6)}
               >
-                Save
+                {textarea6 ? "Update" : "Save"}
               </IonButton>
             </div>
           </IonAccordion>
@@ -455,7 +503,7 @@ const Day4: React.FC<{
                 expand="full"
                 onClick={() => saveResponse("d4q7", textarea7)}
               >
-                Save
+                {textarea7 ? "Update" : "Save"}
               </IonButton>
             </div>
           </IonAccordion>
@@ -486,7 +534,7 @@ const Day4: React.FC<{
                 expand="full"
                 onClick={() => saveResponse("d4q8", textarea8)}
               >
-                Save
+                {textarea8 ? "Update" : "Save"}
               </IonButton>
             </div>
           </IonAccordion>
@@ -516,7 +564,7 @@ const Day4: React.FC<{
                 expand="full"
                 onClick={() => saveResponse("d4q9", textarea9)}
               >
-                Save
+                {textarea9 ? "Update" : "Save"}
               </IonButton>
             </div>
           </IonAccordion>
@@ -577,7 +625,7 @@ const Day4: React.FC<{
                 expand="full"
                 onClick={() => saveResponse("d4q10", textarea10)}
               >
-                Save
+                {textarea10 ? "Update" : "Save"}
               </IonButton>{" "}
             </div>
           </IonAccordion>
@@ -606,7 +654,7 @@ const Day4: React.FC<{
                 expand="full"
                 onClick={() => saveResponse("d4q11", textarea11)}
               >
-                Save
+                {textarea11 ? "Update" : "Save"}
               </IonButton>
             </div>
           </IonAccordion>
@@ -640,7 +688,7 @@ const Day4: React.FC<{
                 expand="full"
                 onClick={() => saveResponse("d4q12", textarea12)}
               >
-                Save
+                {textarea12 ? "Update" : "Save"}
               </IonButton>
             </div>
           </IonAccordion>
@@ -672,7 +720,7 @@ const Day4: React.FC<{
                 expand="full"
                 onClick={() => saveResponse("d4q13", textarea13)}
               >
-                Save
+                {textarea13 ? "Update" : "Save"}
               </IonButton>
             </div>
           </IonAccordion>

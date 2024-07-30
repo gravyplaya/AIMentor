@@ -42,7 +42,6 @@ const ContentCol: React.FC = () => {
             psychology behind successful storytelling.
             <div className="horizontal-buttons ion-padding-vertical">
               <IonButton
-                expand="block"
                 href="mailto:contact@jordanoramdp.com"
                 className="ion-padding-horizontal"
               >
@@ -55,7 +54,6 @@ const ContentCol: React.FC = () => {
                 MESSAGE ME
               </IonButton>
               <IonButton
-                expand="block"
                 href="https://cal.com/jordan-oram/30min"
                 className="ion-padding-horizontal"
               >

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import "./ExploreContainer.css";
 import { LocalNotifications } from "@capacitor/local-notifications";
 import { IonPage, IonContent, IonButton } from "@ionic/react";
+
 LocalNotifications.requestPermissions().then((result) => {
   if (result.display === "granted") {
     console.log("Permission granted, scheduling notification.");
@@ -38,10 +39,10 @@ LocalNotifications.addListener(
 );
 
 interface ContainerProps {
-  name: string;
+  name?: string;
 }
 
-const ExploreContainer: React.FC<ContainerProps> = ({ name }) => {
+const LocalNotification: React.FC<ContainerProps> = ({ name }) => {
   useEffect(() => {
     requestPermission();
 
@@ -77,6 +78,39 @@ const ExploreContainer: React.FC<ContainerProps> = ({ name }) => {
     });
   };
 
+  const scheduleNotifications = async () => {
+    const tomorrow9AM = new Date();
+    tomorrow9AM.setDate(tomorrow9AM.getDate() + 1);
+    tomorrow9AM.setHours(9, 0, 0, 0);
+
+    const dayAfterTomorrow2PM = new Date();
+    dayAfterTomorrow2PM.setDate(dayAfterTomorrow2PM.getDate() + 2);
+    dayAfterTomorrow2PM.setHours(14, 0, 0, 0);
+
+    await LocalNotifications.schedule({
+      notifications: [
+        {
+          title: "Morning Notification",
+          body: "Good morning! Time to start your day.",
+          id: 1,
+          schedule: { at: tomorrow9AM },
+        },
+        {
+          title: "Afternoon Notification",
+          body: "Don't forget to take a break!",
+          id: 2,
+          schedule: { at: dayAfterTomorrow2PM },
+        },
+        {
+          title: "Evening Notification",
+          body: "Time to wind down for the day.",
+          id: 3,
+          schedule: { at: new Date(Date.now() + 30000) }, // 30 seconds from now
+        },
+      ],
+    });
+  };
+
   return (
     <IonButton onClick={scheduleTestNotification}>
       Test Local Notification
@@ -84,4 +118,4 @@ const ExploreContainer: React.FC<ContainerProps> = ({ name }) => {
   );
 };
 
-export default ExploreContainer;
+export default LocalNotification;

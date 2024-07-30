@@ -58,21 +58,18 @@ const Home: React.FC = () => {
   return (
     <IonPage>
       <IonContent fullscreen>
-        <IonGrid>
+        <IonGrid className="custom-grid">
           <IonRow>
             {/* First column spanning all rows */}
             <IonCol
               size="1"
-              className="ion-align-self-stretch border-right-gray ion-justify-content-center ion-align-items-center"
+              className="ion-align-self-stretch border-right-gray ion-justify-content-center ion-align-items-center col1"
             >
               <div className="full-height magical-column">
                 {" "}
-                <img
+                <IonImg
                   src="/images/7days-logo.png"
                   className="right-aligned"
-                  height="50"
-                  width="50"
-                  style={{ scale: "160%" }}
                 />
               </div>
               <IonButtons className="button-container">
@@ -86,16 +83,19 @@ const Home: React.FC = () => {
             </IonCol>
 
             {/* Middle column with 3 rows */}
-            <IonCol size="10" className="ion-no-padding ion-align-self-stretch">
+            <IonCol
+              size="10"
+              className="ion-no-padding ion-align-self-stretch "
+            >
               <IonRow>
-                <IonCol>
+                <IonCol className="col2">
                   <div className="">
                     <Header />
                   </div>
                 </IonCol>
               </IonRow>
               <IonRow>
-                <IonCol className=" border-top-gray border-bottom-gray ion-no-padding">
+                <IonCol className=" border-top-gray border-bottom-gray ion-no-padding col2">
                   <div className="" style={{ height: "100%" }}>
                     {currentComponent === "component1" ? (
                       <ContentCol />
@@ -106,7 +106,7 @@ const Home: React.FC = () => {
                 </IonCol>
               </IonRow>
               <IonRow>
-                <IonCol>
+                <IonCol className="col2">
                   <div className="">
                     <Footer />
                   </div>
@@ -117,7 +117,7 @@ const Home: React.FC = () => {
             {/* Third column spanning all rows */}
             <IonCol
               size="1"
-              className="ion-align-self-stretch border-left-gray"
+              className="ion-align-self-stretch border-left-gray col3"
             >
               <div className="full-height magical-column right-row-pt">
                 {" "}
@@ -145,5 +145,5 @@ const Home: React.FC = () => {
     </IonPage>
   );
 };
-
+// export { showComponent1, showComponent2 };
 export default Home;

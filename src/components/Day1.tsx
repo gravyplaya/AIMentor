@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import {
   IonButtons,
   IonButton,
@@ -36,22 +36,42 @@ const Day1: React.FC<{
 }> = ({ onDidPresent }) => {
   const modal = useRef<HTMLIonModalElement>(null);
   const page = useRef(null);
-  const [isDisabled, setIsDisabled] = useState(false);
   const { isSignedIn, user, isLoaded } = useUser();
   const [presentAlert] = useIonAlert();
-  const [responses, setResponses] = useState();
   const accordionGroupRef1 = useRef<HTMLIonAccordionGroupElement | null>(null);
   const accordionGroupRef2 = useRef<HTMLIonAccordionGroupElement | null>(null);
   const accordionGroupRef3 = useRef<HTMLIonAccordionGroupElement | null>(null);
-
+  const [disabledAccordions, setDisabledAccordions] = useState({
+    first: false,
+    second: false,
+    third: false,
+  });
   const [presentingElement, setPresentingElement] =
     useState<HTMLElement | null>(null);
 
   useEffect(() => {
     setPresentingElement(page.current);
     getResponses();
-    disableAccordionById("accordian1");
+    // disableAccordionById("accordian1");
+    //toggleAccordionDisabled("accordion2");
   }, []);
+
+  // const toggleAccordion = (accordionKey: "first" | "second" | "third") => {
+  //   setDisabledAccordions((prevState) => ({
+  //     ...prevState,
+  //     [accordionKey]: !prevState[accordionKey],
+  //   }));
+  // };
+
+  // const toggleAccordionDisabled = useCallback(
+  //   (accordionId: "accordion1" | "accordion2" | "accordion3") => {
+  //     setDisabledAccordions((prevState) => ({
+  //       ...prevState,
+  //       [accordionId]: !prevState[accordionId],
+  //     }));
+  //   },
+  //   []
+  // );
 
   function dismiss() {
     modal.current?.dismiss();
@@ -96,36 +116,57 @@ const Day1: React.FC<{
       });
       return;
     } else {
-      fetch(
-        "https://nocodb.tavonni.com/api/v2/tables/mrg99nr91g164o1/records",
-        {
-          method: "POST",
-          headers: {
-            accept: "application/json",
-            "xc-auth": import.meta.env.VITE_NOCODB_TOKEN,
-            "xc-token": import.meta.env.VITE_NOCODB_TOKEN,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            userId: userId,
-            response: answer,
-            questionId: question,
-          }),
+      hasAnswer(question).then((answerExists) => {
+        if (answerExists == false) {
+          fetch(
+            "https://nocodb.tavonni.com/api/v2/tables/mrg99nr91g164o1/records",
+            {
+              method: "POST",
+              headers: {
+                accept: "application/json",
+                "xc-auth": import.meta.env.VITE_NOCODB_TOKEN,
+                "xc-token": import.meta.env.VITE_NOCODB_TOKEN,
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                userId: userId,
+                response: answer,
+                questionId: question,
+              }),
+            }
+          )
+            .then((response) => response.json())
+            .then((data) => console.log(data))
+            .catch((error) => console.error("Error:", error));
+        } else {
+          fetch(
+            "https://nocodb.tavonni.com/api/v2/tables/mrg99nr91g164o1/records",
+            {
+              method: "PATCH",
+              headers: {
+                accept: "application/json",
+                "xc-auth": import.meta.env.VITE_NOCODB_TOKEN,
+                "xc-token": import.meta.env.VITE_NOCODB_TOKEN,
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                Id: answerExists,
+                userId: userId,
+                response: answer,
+                questionId: question,
+              }),
+            }
+          )
+            .then((response) => response.json())
+            .then((data) => console.log(data))
+            .catch((error) => console.error("Error:", error));
         }
-      )
-        .then((response) => response.json())
-        .then((data) => console.log(data))
-        .catch((error) => console.error("Error:", error));
+      });
     }
   };
 
   const getResponses = () => {
     if (!userId) {
-      presentAlert({
-        header: "Error",
-        message: "You must be logged in to do that.",
-        buttons: ["OK"],
-      });
       return;
     } else {
       fetch(
@@ -190,19 +231,46 @@ const Day1: React.FC<{
               setTextarea13(q.response);
             }
           });
-          // const q = data.list.find((q: any) => q.questionId === "d1q1");
-          // setTextarea1(q.response);
-          // console.log(q.response);
         })
         .catch((error) => console.error("Error:", error));
     }
   };
+
+  const hasAnswer = async (qid: string): Promise<boolean> => {
+    if (!userId) {
+      return false; // Return false if userId is not available
+    } else {
+      const response = await fetch(
+        "https://nocodb.tavonni.com/api/v2/tables/mrg99nr91g164o1/records?where=where%3D%28userId%2Ceq%2C" +
+          userId +
+          "%29~and%28questionId%2Ceq%2C" +
+          qid +
+          "%29&limit=25&shuffle=0&offset=0",
+        {
+          method: "GET",
+          headers: {
+            accept: "application/json",
+            "xc-auth": import.meta.env.VITE_NOCODB_TOKEN,
+            "xc-token": import.meta.env.VITE_NOCODB_TOKEN,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      if (data.list.length >= 1) {
+        return data.list[0].Id;
+      } else {
+        return false;
+      }
+    }
+  };
+
   const disableAccordionById = async (id: any) => {
     const accordionGroups = [
       accordionGroupRef1.current,
       accordionGroupRef2.current,
+      accordionGroupRef3.current,
     ];
-
     for (const group of accordionGroups) {
       if (group) {
         console.log(group);
@@ -246,7 +314,7 @@ const Day1: React.FC<{
           </IonCardContent>
         </IonCard>
         <IonAccordionGroup ref={accordionGroupRef1}>
-          <IonAccordion value="accordian1">
+          <IonAccordion>
             <IonItem slot="header">
               <IonLabel>
                 <IonGrid>
@@ -271,7 +339,7 @@ const Day1: React.FC<{
                 expand="full"
                 onClick={() => saveResponse("d1q1", textarea1)}
               >
-                Save
+                {textarea1 ? "Update" : "Save"}
               </IonButton>
             </div>
           </IonAccordion>
@@ -301,7 +369,7 @@ const Day1: React.FC<{
                 expand="full"
                 onClick={() => saveResponse("d1q2", textarea2)}
               >
-                Save
+                {textarea2 ? "Update" : "Save"}
               </IonButton>
             </div>
           </IonAccordion>
@@ -333,7 +401,7 @@ const Day1: React.FC<{
                 expand="full"
                 onClick={() => saveResponse("d1q3", textarea3)}
               >
-                Save
+                {textarea3 ? "Update" : "Save"}
               </IonButton>
             </div>
           </IonAccordion>
@@ -365,7 +433,7 @@ const Day1: React.FC<{
                 expand="full"
                 onClick={() => saveResponse("d1q4", textarea4)}
               >
-                Save
+                {textarea4 ? "Update" : "Save"}
               </IonButton>
             </div>
           </IonAccordion>
@@ -396,7 +464,7 @@ const Day1: React.FC<{
                 expand="full"
                 onClick={() => saveResponse("d1q5", textarea5)}
               >
-                Save
+                {textarea5 ? "Update" : "Save"}
               </IonButton>
             </div>
           </IonAccordion>
@@ -458,7 +526,7 @@ const Day1: React.FC<{
                 expand="full"
                 onClick={() => saveResponse("d1q6", textarea6)}
               >
-                Save
+                {textarea6 ? "Update" : "Save"}
               </IonButton>
             </div>
           </IonAccordion>
@@ -488,7 +556,7 @@ const Day1: React.FC<{
                 expand="full"
                 onClick={() => saveResponse("d1q7", textarea7)}
               >
-                Save
+                {textarea7 ? "Update" : "Save"}
               </IonButton>
             </div>
           </IonAccordion>
@@ -518,7 +586,7 @@ const Day1: React.FC<{
                 expand="full"
                 onClick={() => saveResponse("d1q8", textarea8)}
               >
-                Save
+                {textarea8 ? "Update" : "Save"}
               </IonButton>
             </div>
           </IonAccordion>
@@ -547,7 +615,7 @@ const Day1: React.FC<{
                 expand="full"
                 onClick={() => saveResponse("d1q9", textarea9)}
               >
-                Save
+                {textarea9 ? "Update" : "Save"}
               </IonButton>
             </div>
           </IonAccordion>
@@ -608,7 +676,7 @@ const Day1: React.FC<{
                 expand="full"
                 onClick={() => saveResponse("d1q10", textarea10)}
               >
-                Save
+                {textarea10 ? "Update" : "Save"}
               </IonButton>
             </div>
           </IonAccordion>
@@ -637,7 +705,7 @@ const Day1: React.FC<{
                 expand="full"
                 onClick={() => saveResponse("d1q11", textarea11)}
               >
-                Save
+                {textarea11 ? "Update" : "Save"}
               </IonButton>
             </div>
           </IonAccordion>
@@ -667,7 +735,7 @@ const Day1: React.FC<{
                 expand="full"
                 onClick={() => saveResponse("d1q12", textarea12)}
               >
-                Save
+                {textarea12 ? "Update" : "Save"}
               </IonButton>{" "}
             </div>
           </IonAccordion>
@@ -697,7 +765,7 @@ const Day1: React.FC<{
                 expand="full"
                 onClick={() => saveResponse("d1q13", textarea13)}
               >
-                Save
+                {textarea13 ? "Update" : "Save"}
               </IonButton>
             </div>
           </IonAccordion>

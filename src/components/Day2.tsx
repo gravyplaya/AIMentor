@@ -24,21 +24,202 @@ import {
   IonIcon,
   IonAccordion,
   IonAccordionGroup,
+  IonTextarea,
+  useIonAlert,
 } from "@ionic/react";
 import "../pages/Daily.css";
 import { linkOutline, addOutline } from "ionicons/icons";
+import { useUser } from "@clerk/clerk-react";
 
 const Day2: React.FC<{
   onDidPresent: () => void;
 }> = ({ onDidPresent }) => {
   const modal = useRef<HTMLIonModalElement>(null);
   const page = useRef(null);
-
+  const [presentAlert] = useIonAlert();
+  const { isSignedIn, user, isLoaded } = useUser();
   const [presentingElement, setPresentingElement] =
     useState<HTMLElement | null>(null);
 
+  const [textarea1, setTextarea1] = useState("");
+  const [textarea2, setTextarea2] = useState("");
+  const [textarea3, setTextarea3] = useState("");
+  const [textarea4, setTextarea4] = useState("");
+  const [textarea5, setTextarea5] = useState("");
+  const [textarea6, setTextarea6] = useState("");
+  const [textarea7, setTextarea7] = useState("");
+  const [textarea8, setTextarea8] = useState("");
+  const [textarea9, setTextarea9] = useState("");
+  const [textarea10, setTextarea10] = useState("");
+  const [textarea11, setTextarea11] = useState("");
+  const [textarea12, setTextarea12] = useState("");
+  const [textarea13, setTextarea13] = useState("");
+
+  let userId: string;
+  if (isLoaded && isSignedIn) {
+    userId = user.id;
+  }
+
+  const saveResponse = (question: string, answer: string) => {
+    if (!userId) {
+      presentAlert({
+        header: "Error",
+        message: "You must be logged in to do that.",
+        buttons: ["OK"],
+      });
+      return;
+    } else {
+      hasAnswer(question).then((answerExists) => {
+        if (answerExists == false) {
+          fetch(
+            "https://nocodb.tavonni.com/api/v2/tables/mrg99nr91g164o1/records",
+            {
+              method: "POST",
+              headers: {
+                accept: "application/json",
+                "xc-auth": import.meta.env.VITE_NOCODB_TOKEN,
+                "xc-token": import.meta.env.VITE_NOCODB_TOKEN,
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                userId: userId,
+                response: answer,
+                questionId: question,
+              }),
+            }
+          )
+            .then((response) => response.json())
+            .then((data) => console.log(data))
+            .catch((error) => console.error("Error:", error));
+        } else {
+          fetch(
+            "https://nocodb.tavonni.com/api/v2/tables/mrg99nr91g164o1/records",
+            {
+              method: "PATCH",
+              headers: {
+                accept: "application/json",
+                "xc-auth": import.meta.env.VITE_NOCODB_TOKEN,
+                "xc-token": import.meta.env.VITE_NOCODB_TOKEN,
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                Id: answerExists,
+                userId: userId,
+                response: answer,
+                questionId: question,
+              }),
+            }
+          )
+            .then((response) => response.json())
+            .then((data) => console.log(data))
+            .catch((error) => console.error("Error:", error));
+        }
+      });
+    }
+  };
+
+  const getResponses = () => {
+    if (!userId) {
+      return;
+    } else {
+      fetch(
+        "https://nocodb.tavonni.com/api/v2/tables/mrg99nr91g164o1/records?where=where%3D%28userId%2Ceq%2C" +
+          userId +
+          "%29&limit=25&shuffle=0&offset=0",
+        {
+          method: "GET",
+          headers: {
+            accept: "application/json",
+            "xc-auth": import.meta.env.VITE_NOCODB_TOKEN,
+            "xc-token": import.meta.env.VITE_NOCODB_TOKEN,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          const questions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+          questions.forEach((question, index) => {
+            const q = data.list.find(
+              (q: any) => q.questionId === "d2q" + index
+            );
+            if (q && index == 1) {
+              setTextarea1(q.response);
+            }
+            if (q && index == 2) {
+              setTextarea2(q.response);
+            }
+            if (q && index == 3) {
+              setTextarea3(q.response);
+            }
+            if (q && index == 4) {
+              setTextarea4(q.response);
+            }
+            if (q && index == 5) {
+              setTextarea5(q.response);
+            }
+            if (q && index == 6) {
+              setTextarea6(q.response);
+            }
+            if (q && index == 7) {
+              setTextarea7(q.response);
+            }
+            if (q && index == 8) {
+              setTextarea8(q.response);
+            }
+            if (q && index == 9) {
+              setTextarea9(q.response);
+            }
+            if (q && index == 10) {
+              setTextarea10(q.response);
+            }
+            if (q && index == 11) {
+              setTextarea11(q.response);
+            }
+            if (q && index == 12) {
+              setTextarea12(q.response);
+            }
+            if (q && index == 13) {
+              setTextarea13(q.response);
+            }
+          });
+        })
+        .catch((error) => console.error("Error:", error));
+    }
+  };
+
+  const hasAnswer = async (qid: string): Promise<boolean> => {
+    if (!userId) {
+      return false; // Return false if userId is not available
+    } else {
+      const response = await fetch(
+        "https://nocodb.tavonni.com/api/v2/tables/mrg99nr91g164o1/records?where=where%3D%28userId%2Ceq%2C" +
+          userId +
+          "%29~and%28questionId%2Ceq%2C" +
+          qid +
+          "%29&limit=25&shuffle=0&offset=0",
+        {
+          method: "GET",
+          headers: {
+            accept: "application/json",
+            "xc-auth": import.meta.env.VITE_NOCODB_TOKEN,
+            "xc-token": import.meta.env.VITE_NOCODB_TOKEN,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      if (data.list.length >= 1) {
+        return data.list[0].Id;
+      } else {
+        return false;
+      }
+    }
+  };
+
   useEffect(() => {
     setPresentingElement(page.current);
+    getResponses();
   }, []);
 
   function dismiss() {
@@ -91,10 +272,18 @@ const Day2: React.FC<{
               </IonLabel>
             </IonItem>
             <div className="ion-padding" slot="content" id="d2a1">
-              The core value that drives all my creative projects is
-              authenticity. I believe in being true to myself and my vision,
-              which ensures my work resonates deeply and genuinely with my
-              audience.
+              <IonTextarea
+                placeholder="Respond here"
+                value={textarea1}
+                autoGrow={true}
+                onIonChange={(e) => setTextarea1(e.detail.value!)}
+              ></IonTextarea>
+              <IonButton
+                expand="full"
+                onClick={() => saveResponse("d2q1", textarea1)}
+              >
+                {textarea1 ? "Update" : "Save"}
+              </IonButton>
             </div>
           </IonAccordion>
           <IonAccordion>
@@ -114,7 +303,18 @@ const Day2: React.FC<{
               </IonLabel>
             </IonItem>
             <div className="ion-padding" slot="content" id="d2a2">
-              Second Content
+              <IonTextarea
+                placeholder="Respond here"
+                value={textarea2}
+                autoGrow={true}
+                onIonChange={(e) => setTextarea2(e.detail.value!)}
+              ></IonTextarea>
+              <IonButton
+                expand="full"
+                onClick={() => saveResponse("d2q2", textarea2)}
+              >
+                {textarea2 ? "Update" : "Save"}
+              </IonButton>
             </div>
           </IonAccordion>
           <IonAccordion>
@@ -135,7 +335,18 @@ const Day2: React.FC<{
               </IonLabel>
             </IonItem>
             <div className="ion-padding" slot="content" id="d2a3">
-              Third Content
+              <IonTextarea
+                placeholder="Respond here"
+                value={textarea3}
+                autoGrow={true}
+                onIonChange={(e) => setTextarea3(e.detail.value!)}
+              ></IonTextarea>
+              <IonButton
+                expand="full"
+                onClick={() => saveResponse("d2q3", textarea3)}
+              >
+                {textarea3 ? "Update" : "Save"}
+              </IonButton>
             </div>
           </IonAccordion>
           <IonAccordion>
@@ -155,7 +366,18 @@ const Day2: React.FC<{
               </IonLabel>
             </IonItem>
             <div className="ion-padding" slot="content" id="d2a4">
-              Third Content
+              <IonTextarea
+                placeholder="Respond here"
+                value={textarea4}
+                autoGrow={true}
+                onIonChange={(e) => setTextarea4(e.detail.value!)}
+              ></IonTextarea>
+              <IonButton
+                expand="full"
+                onClick={() => saveResponse("d2q4", textarea4)}
+              >
+                {textarea4 ? "Update" : "Save"}
+              </IonButton>
             </div>
           </IonAccordion>
           <IonAccordion>
@@ -175,7 +397,18 @@ const Day2: React.FC<{
               </IonLabel>
             </IonItem>
             <div className="ion-padding" slot="content" id="d2a5">
-              Third Content
+              <IonTextarea
+                placeholder="Respond here"
+                value={textarea5}
+                autoGrow={true}
+                onIonChange={(e) => setTextarea5(e.detail.value!)}
+              ></IonTextarea>
+              <IonButton
+                expand="full"
+                onClick={() => saveResponse("d2q5", textarea5)}
+              >
+                {textarea5 ? "Update" : "Save"}
+              </IonButton>
             </div>
           </IonAccordion>
           <IonAccordion>
@@ -225,10 +458,18 @@ const Day2: React.FC<{
               </IonLabel>
             </IonItem>
             <div className="ion-padding" slot="content" id="d2a6">
-              The core value that drives all my creative projects is
-              authenticity. I believe in being true to myself and my vision,
-              which ensures my work resonates deeply and genuinely with my
-              audience.
+              <IonTextarea
+                placeholder="Respond here"
+                value={textarea6}
+                autoGrow={true}
+                onIonChange={(e) => setTextarea6(e.detail.value!)}
+              ></IonTextarea>
+              <IonButton
+                expand="full"
+                onClick={() => saveResponse("d2q6", textarea6)}
+              >
+                {textarea6 ? "Update" : "Save"}
+              </IonButton>
             </div>
           </IonAccordion>
           <IonAccordion>
@@ -247,7 +488,18 @@ const Day2: React.FC<{
               </IonLabel>
             </IonItem>
             <div className="ion-padding" slot="content" id="d2a7">
-              Second Content
+              <IonTextarea
+                placeholder="Respond here"
+                value={textarea7}
+                autoGrow={true}
+                onIonChange={(e) => setTextarea7(e.detail.value!)}
+              ></IonTextarea>
+              <IonButton
+                expand="full"
+                onClick={() => saveResponse("d2q7", textarea7)}
+              >
+                {textarea7 ? "Update" : "Save"}
+              </IonButton>
             </div>
           </IonAccordion>
           <IonAccordion>
@@ -267,7 +519,18 @@ const Day2: React.FC<{
               </IonLabel>
             </IonItem>
             <div className="ion-padding" slot="content" id="d2a8">
-              Third Content
+              <IonTextarea
+                placeholder="Respond here"
+                value={textarea8}
+                autoGrow={true}
+                onIonChange={(e) => setTextarea8(e.detail.value!)}
+              ></IonTextarea>
+              <IonButton
+                expand="full"
+                onClick={() => saveResponse("d2q8", textarea8)}
+              >
+                {textarea8 ? "Update" : "Save"}
+              </IonButton>
             </div>
           </IonAccordion>
           <IonAccordion>
@@ -286,7 +549,18 @@ const Day2: React.FC<{
               </IonLabel>
             </IonItem>
             <div className="ion-padding" slot="content" id="d2a9">
-              Third Content
+              <IonTextarea
+                placeholder="Respond here"
+                value={textarea9}
+                autoGrow={true}
+                onIonChange={(e) => setTextarea9(e.detail.value!)}
+              ></IonTextarea>
+              <IonButton
+                expand="full"
+                onClick={() => saveResponse("d2q9", textarea9)}
+              >
+                {textarea9 ? "Update" : "Save"}
+              </IonButton>
             </div>
           </IonAccordion>
           <IonAccordion>
@@ -336,10 +610,18 @@ const Day2: React.FC<{
               </IonLabel>
             </IonItem>
             <div className="ion-padding" slot="content" id="d2a10">
-              The core value that drives all my creative projects is
-              authenticity. I believe in being true to myself and my vision,
-              which ensures my work resonates deeply and genuinely with my
-              audience.
+              <IonTextarea
+                placeholder="Respond here"
+                value={textarea10}
+                autoGrow={true}
+                onIonChange={(e) => setTextarea10(e.detail.value!)}
+              ></IonTextarea>
+              <IonButton
+                expand="full"
+                onClick={() => saveResponse("d2q10", textarea10)}
+              >
+                {textarea10 ? "Update" : "Save"}
+              </IonButton>
             </div>
           </IonAccordion>
           <IonAccordion>
@@ -361,7 +643,18 @@ const Day2: React.FC<{
               </IonLabel>
             </IonItem>
             <div className="ion-padding" slot="content" id="d2a11">
-              Second Content
+              <IonTextarea
+                placeholder="Respond here"
+                value={textarea11}
+                autoGrow={true}
+                onIonChange={(e) => setTextarea11(e.detail.value!)}
+              ></IonTextarea>
+              <IonButton
+                expand="full"
+                onClick={() => saveResponse("d2q11", textarea11)}
+              >
+                {textarea11 ? "Update" : "Save"}
+              </IonButton>
             </div>
           </IonAccordion>
           <IonAccordion>
@@ -380,7 +673,18 @@ const Day2: React.FC<{
               </IonLabel>
             </IonItem>
             <div className="ion-padding" slot="content" id="d2a12">
-              Third Content
+              <IonTextarea
+                placeholder="Respond here"
+                value={textarea12}
+                autoGrow={true}
+                onIonChange={(e) => setTextarea12(e.detail.value!)}
+              ></IonTextarea>
+              <IonButton
+                expand="full"
+                onClick={() => saveResponse("d2q12", textarea12)}
+              >
+                {textarea12 ? "Update" : "Save"}
+              </IonButton>
             </div>
           </IonAccordion>
           <IonAccordion>
@@ -400,7 +704,18 @@ const Day2: React.FC<{
               </IonLabel>
             </IonItem>
             <div className="ion-padding" slot="content" id="d2a13">
-              Third Content
+              <IonTextarea
+                placeholder="Respond here"
+                value={textarea13}
+                autoGrow={true}
+                onIonChange={(e) => setTextarea13(e.detail.value!)}
+              ></IonTextarea>
+              <IonButton
+                expand="full"
+                onClick={() => saveResponse("d2q13", textarea13)}
+              >
+                {textarea13 ? "Update" : "Save"}
+              </IonButton>
             </div>
           </IonAccordion>
           <IonAccordion>
