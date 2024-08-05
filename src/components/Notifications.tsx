@@ -11,6 +11,10 @@ const requestNotificationPermission = async () => {
   return permission === "granted";
 };
 
+const checkPermissions = () => {
+  console.log("Notification permission status:", Notification.permission);
+};
+
 export const showNotification = (
   title: string,
   options?: NotificationOptions
@@ -23,7 +27,7 @@ export const showNotification = (
 export const scheduleNotification = async (
   title: string,
   body: string,
-  delay: number
+  delay: number = 1000
 ) => {
   if (await requestNotificationPermission()) {
     setTimeout(() => {
@@ -34,21 +38,30 @@ export const scheduleNotification = async (
 
 export const scheduleHourlyNotifications = async (
   title: string,
-  body: string
+  body: string,
+  time?: number
 ) => {
   if (await requestNotificationPermission()) {
     // Calculate time until the next hour
     const now = new Date();
-    const nextHour = new Date(
-      now.getFullYear(),
-      now.getMonth(),
-      now.getDate(),
-      now.getHours() + 1,
-      0,
-      0
-    );
-    const timeUntilNextHour = nextHour.getTime() - now.getTime();
+    const oneMin = 60 * 1000; // 1 minute in milliseconds
 
+    const nextMin = new Date();
+    nextMin.setMinutes(nextMin.getMinutes() + 1);
+
+    const nextHour = new Date();
+    nextHour.setHours(nextHour.getHours() + 1);
+
+    const tomorrow9AM = new Date();
+    tomorrow9AM.setDate(tomorrow9AM.getDate() + 1);
+    tomorrow9AM.setHours(9, 0, 0, 0);
+
+    const dayAfterTomorrow2PM = new Date();
+    dayAfterTomorrow2PM.setDate(dayAfterTomorrow2PM.getDate() + 2);
+    dayAfterTomorrow2PM.setHours(14, 0, 0, 0);
+
+    const timeUntilNextHour = nextHour.getTime() - now.getTime();
+    const timeUntilNextMin = nextMin.getTime() - now.getTime();
     // Schedule the first notification
     setTimeout(() => {
       showNotification(title, { body });
@@ -57,22 +70,26 @@ export const scheduleHourlyNotifications = async (
       setInterval(() => {
         showNotification(title, { body });
       }, 60 * 60 * 1000); // 1 hour in milliseconds
-    }, timeUntilNextHour);
+    }, timeUntilNextMin);
   }
 };
 
 const Notifications: React.FC = () => {
   const handleScheduleNotification = async () => {
+    showNotification("Tester title", { body: "This is just a test" });
     await scheduleNotification(
       "Test Notification",
-      "This is a test notification",
+      "This is a 5 sec delayed notification",
       5000
     ); // 5 seconds delay
   };
 
   useEffect(() => {
     // Start hourly notifications when component mounts
-    // scheduleHourlyNotifications('Hourly Reminder', 'This is your hourly notification!');
+    scheduleHourlyNotifications(
+      "Hourly Reminder",
+      "This is your hourly scheduled notification."
+    );
   }, []);
 
   return (

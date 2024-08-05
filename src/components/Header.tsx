@@ -20,6 +20,7 @@ import Notifications, {
   showNotification,
   scheduleNotification,
 } from "./Notifications";
+import LocalNotification from "./LocalNotification";
 import showComponent1 from "../pages/Home";
 import showComponent2 from "../pages/Home";
 
@@ -28,6 +29,7 @@ import { Storage } from "@ionic/storage";
 const storage = new Storage();
 await storage.create();
 import Backdrop from "../components/Backdrop";
+import { useUser } from "@clerk/clerk-react";
 
 const firstRun = await storage.get("firstRun");
 const hasStarted = firstRun !== null;
@@ -41,10 +43,24 @@ const Header: React.FC<ContainerProps> = () => {
   const [showAlert, setShowAlert] = useState(false);
   const date = new Date(firstRun);
   const humanReadableDate = date.toLocaleString();
+  const { isSignedIn, user, isLoaded } = useUser();
 
+  let userId: string;
+  if (isLoaded && isSignedIn) {
+    userId = user.id;
+  }
   const handleShowAlert = () => {
-    setShowAlert(true);
-    startTimer();
+    if (!userId) {
+      presentAlert({
+        header: "Error",
+        message: "You must be logged in to do that.",
+        buttons: ["OK"],
+      });
+      return;
+    } else {
+      setShowAlert(true);
+      startTimer();
+    }
   };
 
   const handleDismiss = () => {
@@ -91,6 +107,7 @@ const Header: React.FC<ContainerProps> = () => {
           {firstRun === null ? "START" : humanReadableDate}
         </IonButton>
         <Notifications />
+        {/* <LocalNotification /> */}
         <div id="mobileNav">
           <IonButtons className="mobile-button-container">
             <IonButton onClick={showComponent1}>

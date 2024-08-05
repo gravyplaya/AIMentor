@@ -53,18 +53,13 @@ function getTimeDifference(
 }
 
 const diff = getTimeDifference(firstRun, new Date().getTime());
-
 const currentHour = new Date().getHours();
 const currentSpot = "d" + diff.days + "h" + currentHour;
+await storage.set("currentSpot", currentSpot);
 
 const Daily: React.FC = () => {
   const modal = useRef<HTMLIonModalElement>(null);
   const page = useRef(null);
-  const [disabledAccordions, setDisabledAccordions] = useState({
-    accordion1: false,
-    accordion2: false,
-    accordion3: false,
-  });
 
   const [presentingElement, setPresentingElement] =
     useState<HTMLElement | null>(null);
@@ -77,15 +72,6 @@ const Daily: React.FC = () => {
     const magicDiv = document.getElementById("d" + day + "q" + hour);
     magicDiv?.classList.add("no-blur");
   }
-  const toggleAccordionDisabled = useCallback(
-    (accordionId: "accordion1" | "accordion2" | "accordion3") => {
-      setDisabledAccordions((prevState) => ({
-        ...prevState,
-        [accordionId]: !prevState[accordionId],
-      }));
-    },
-    []
-  );
 
   const handleModalPresent = async (day: number) => {
     const hours = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
@@ -137,7 +123,10 @@ const Daily: React.FC = () => {
             <IonCardContent>
               Identify and articulate your core values and creative vision.
             </IonCardContent>
-            <Day1 onDidPresent={() => handleModalPresent(1)} />
+            <Day1
+              onDidPresent={() => handleModalPresent(1)}
+              currentSpot={currentSpot}
+            />
           </IonCol>
         </IonRow>
 
@@ -172,7 +161,10 @@ const Daily: React.FC = () => {
               Transform your vision into a structured plan with achievable
               goals.
             </IonCardContent>
-            <Day2 onDidPresent={() => handleModalPresent(2)} />
+            <Day2
+              onDidPresent={() => handleModalPresent(2)}
+              currentSpot={currentSpot}
+            />
           </IonCol>
         </IonRow>
 
@@ -205,7 +197,10 @@ const Daily: React.FC = () => {
               Learn to engage your audience and understand the social
               implications of your work.
             </IonCardContent>
-            <Day3 onDidPresent={() => handleModalPresent(3)} />
+            <Day3
+              onDidPresent={() => handleModalPresent(3)}
+              currentSpot={currentSpot}
+            />
           </IonCol>
         </IonRow>
 
@@ -239,7 +234,10 @@ const Daily: React.FC = () => {
             <IonCardContent>
               Overcome creative blocks and explore new storytelling techniques.
             </IonCardContent>
-            <Day4 onDidPresent={() => handleModalPresent(4)} />
+            <Day4
+              onDidPresent={() => handleModalPresent(4)}
+              currentSpot={currentSpot}
+            />
           </IonCol>
         </IonRow>
 
@@ -309,7 +307,10 @@ const Daily: React.FC = () => {
             </IonCardHeader>
 
             <IonCardContent>Reflecting and Planning</IonCardContent>
-            <Day6 onDidPresent={() => handleModalPresent(6)} />
+            <Day6
+              onDidPresent={() => handleModalPresent(6)}
+              currentSpot={currentSpot}
+            />
           </IonCol>
         </IonRow>
 
@@ -342,7 +343,10 @@ const Daily: React.FC = () => {
               Regularly reflect on your progress and set future goals to keep
               moving forward.
             </IonCardContent>
-            <Day7 onDidPresent={() => handleModalPresent(7)} />
+            <Day7
+              onDidPresent={() => handleModalPresent(7)}
+              currentSpot={currentSpot}
+            />
           </IonCol>
         </IonRow>
       </IonGrid>

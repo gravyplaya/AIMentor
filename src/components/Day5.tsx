@@ -54,34 +54,65 @@ const Day5: React.FC<{
   const [textarea11, setTextarea11] = useState("");
   const [textarea12, setTextarea12] = useState("");
   const [textarea13, setTextarea13] = useState("");
-  const accordionGroupRef1 = useRef<HTMLIonAccordionGroupElement | null>(null);
-  const accordionGroupRef2 = useRef<HTMLIonAccordionGroupElement | null>(null);
-  const accordionGroupRef3 = useRef<HTMLIonAccordionGroupElement | null>(null);
-
-  const disableAccordionById = async (id: any) => {
-    const accordionGroups = [
-      accordionGroupRef1.current,
-      accordionGroupRef2.current,
-      accordionGroupRef3.current,
-    ];
-
-    for (const group of accordionGroups) {
-      if (group) {
-        const accordions = await group.getAccordions();
-        const targetAccordion = accordions.find(
-          (accordion) => accordion.value === id
-        );
-        if (targetAccordion) {
-          targetAccordion.disabled = true;
-          break;
-        }
-      }
-    }
-  };
+  const [isAccordion1Disabled, setisAccordion1Disabled] = useState(true);
+  const [isAccordion2Disabled, setisAccordion2Disabled] = useState(true);
+  const [isAccordion3Disabled, setisAccordion3Disabled] = useState(true);
+  const [isAccordion4Disabled, setisAccordion4Disabled] = useState(true);
+  const [isAccordion5Disabled, setisAccordion5Disabled] = useState(true);
+  const [isAccordion6Disabled, setisAccordion6Disabled] = useState(true);
+  const [isAccordion7Disabled, setisAccordion7Disabled] = useState(true);
+  const [isAccordion8Disabled, setisAccordion8Disabled] = useState(true);
+  const [isAccordion9Disabled, setisAccordion9Disabled] = useState(true);
+  const [isAccordion10Disabled, setisAccordion10Disabled] = useState(true);
+  const [isAccordion11Disabled, setisAccordion11Disabled] = useState(true);
+  const [isAccordion12Disabled, setisAccordion12Disabled] = useState(true);
+  const [isAccordion13Disabled, setisAccordion13Disabled] = useState(true);
 
   useEffect(() => {
     setPresentingElement(page.current);
     getResponses();
+    if (currentSpot.includes("d5")) {
+      const hour = currentSpot.split("h")[1];
+      if (hour >= 8) {
+        setisAccordion1Disabled(false);
+      }
+      if (hour >= 9) {
+        setisAccordion2Disabled(false);
+      }
+      if (hour >= 10) {
+        setisAccordion3Disabled(false);
+      }
+      if (hour >= 11) {
+        setisAccordion4Disabled(false);
+      }
+      if (hour >= 12) {
+        setisAccordion5Disabled(false);
+      }
+      if (hour >= 13) {
+        setisAccordion6Disabled(false);
+      }
+      if (hour >= 14) {
+        setisAccordion7Disabled(false);
+      }
+      if (hour >= 15) {
+        setisAccordion8Disabled(false);
+      }
+      if (hour >= 16) {
+        setisAccordion9Disabled(false);
+      }
+      if (hour >= 17) {
+        setisAccordion10Disabled(false);
+      }
+      if (hour >= 18) {
+        setisAccordion11Disabled(false);
+      }
+      if (hour >= 19) {
+        setisAccordion12Disabled(false);
+      }
+      if (hour >= 20) {
+        setisAccordion13Disabled(false);
+      }
+    }
   }, []);
   let userId: string;
   if (isLoaded && isSignedIn) {
@@ -277,8 +308,8 @@ const Day5: React.FC<{
             Define and refine personal brand.
           </IonCardContent>
         </IonCard>
-        <IonAccordionGroup ref={accordionGroupRef1}>
-          <IonAccordion value="accordian1">
+        <IonAccordionGroup>
+          <IonAccordion disabled={isAccordion1Disabled}>
             <IonItem slot="header">
               <IonLabel>
                 <IonGrid>
@@ -307,7 +338,7 @@ const Day5: React.FC<{
               </IonButton>
             </div>
           </IonAccordion>
-          <IonAccordion value="accordian2">
+          <IonAccordion disabled={isAccordion2Disabled}>
             <IonItem slot="header">
               <IonLabel>
                 <IonGrid>
@@ -340,7 +371,7 @@ const Day5: React.FC<{
               </IonButton>
             </div>
           </IonAccordion>
-          <IonAccordion value="accordian3">
+          <IonAccordion disabled={isAccordion3Disabled}>
             <IonItem slot="header">
               <IonLabel>
                 {" "}
@@ -373,7 +404,7 @@ const Day5: React.FC<{
               </IonButton>
             </div>
           </IonAccordion>
-          <IonAccordion value="accordian4">
+          <IonAccordion disabled={isAccordion4Disabled}>
             <IonItem slot="header">
               <IonLabel>
                 {" "}
@@ -404,7 +435,7 @@ const Day5: React.FC<{
               </IonButton>
             </div>
           </IonAccordion>
-          <IonAccordion value="accordian5">
+          <IonAccordion disabled={isAccordion5Disabled}>
             <IonItem slot="header">
               <IonLabel>
                 {" "}
@@ -438,7 +469,7 @@ const Day5: React.FC<{
               </IonButton>
             </div>
           </IonAccordion>
-          <IonAccordion>
+          <IonAccordion disabled={isAccordion5Disabled}>
             <IonItem slot="header">
               <IonLabel>
                 {" "}
@@ -468,8 +499,8 @@ const Day5: React.FC<{
             Enhance online presence and marketing strategies.
           </IonCardContent>
         </IonCard>
-        <IonAccordionGroup ref={accordionGroupRef2}>
-          <IonAccordion value="accordian6">
+        <IonAccordionGroup>
+          <IonAccordion disabled={isAccordion6Disabled}>
             <IonItem slot="header">
               <IonLabel>
                 <IonGrid>
@@ -499,7 +530,7 @@ const Day5: React.FC<{
               </IonButton>
             </div>
           </IonAccordion>
-          <IonAccordion value="accordian7">
+          <IonAccordion disabled={isAccordion7Disabled}>
             <IonItem slot="header">
               <IonLabel>
                 <IonGrid>
@@ -529,7 +560,7 @@ const Day5: React.FC<{
               </IonButton>
             </div>
           </IonAccordion>
-          <IonAccordion value="accordian8">
+          <IonAccordion disabled={isAccordion8Disabled}>
             <IonItem slot="header">
               <IonLabel>
                 {" "}
@@ -560,7 +591,7 @@ const Day5: React.FC<{
               </IonButton>
             </div>
           </IonAccordion>
-          <IonAccordion value="accordian9">
+          <IonAccordion disabled={isAccordion9Disabled}>
             <IonItem slot="header">
               <IonLabel>
                 {" "}
@@ -590,7 +621,7 @@ const Day5: React.FC<{
               </IonButton>
             </div>
           </IonAccordion>
-          <IonAccordion>
+          <IonAccordion disabled={isAccordion9Disabled}>
             <IonItem slot="header">
               <IonLabel>
                 {" "}
@@ -620,8 +651,8 @@ const Day5: React.FC<{
             Reflect on branding efforts and plan improvements.
           </IonCardContent>
         </IonCard>
-        <IonAccordionGroup ref={accordionGroupRef3}>
-          <IonAccordion value="accordian10">
+        <IonAccordionGroup>
+          <IonAccordion disabled={isAccordion10Disabled}>
             <IonItem slot="header">
               <IonLabel>
                 <IonGrid>
@@ -653,7 +684,7 @@ const Day5: React.FC<{
               </IonButton>
             </div>
           </IonAccordion>
-          <IonAccordion value="accordian11">
+          <IonAccordion disabled={isAccordion11Disabled}>
             <IonItem slot="header">
               <IonLabel>
                 <IonGrid>
@@ -682,7 +713,7 @@ const Day5: React.FC<{
               </IonButton>
             </div>
           </IonAccordion>
-          <IonAccordion value="accordian12">
+          <IonAccordion disabled={isAccordion12Disabled}>
             <IonItem slot="header">
               <IonLabel>
                 {" "}
@@ -712,7 +743,7 @@ const Day5: React.FC<{
               </IonButton>
             </div>
           </IonAccordion>
-          <IonAccordion value="accordian13">
+          <IonAccordion disabled={isAccordion13Disabled}>
             <IonItem slot="header">
               <IonLabel>
                 {" "}
@@ -743,7 +774,7 @@ const Day5: React.FC<{
               </IonButton>
             </div>
           </IonAccordion>
-          <IonAccordion>
+          <IonAccordion disabled={isAccordion13Disabled}>
             <IonItem slot="header">
               <IonLabel>
                 {" "}

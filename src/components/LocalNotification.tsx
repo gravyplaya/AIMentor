@@ -10,14 +10,10 @@ LocalNotifications.requestPermissions().then((result) => {
     const notifs = LocalNotifications.schedule({
       notifications: [
         {
-          title: "Title",
-          body: "Body",
+          title: "Permission granted",
+          body: "Thanks. Here's a Scheduled notification",
           id: 1,
-          schedule: { at: new Date(Date.now() + 1000 * 5) },
-          sound: undefined,
-          attachments: undefined,
-          actionTypeId: "",
-          extra: undefined,
+          schedule: { at: new Date(Date.now()) },
         },
       ],
     });
@@ -72,13 +68,19 @@ const LocalNotification: React.FC<ContainerProps> = ({ name }) => {
           title: "Test Notification",
           body: "This is a test local notification",
           id: 1,
-          schedule: { at: new Date(Date.now() + 5000) },
+          schedule: { at: new Date(Date.now() + 1000) },
         },
       ],
     });
   };
 
   const scheduleNotifications = async () => {
+    const oneMin = new Date();
+    oneMin.setMinutes(oneMin.getMinutes() + 1);
+
+    const nextHour = new Date();
+    nextHour.setHours(nextHour.getHours() + 1);
+
     const tomorrow9AM = new Date();
     tomorrow9AM.setDate(tomorrow9AM.getDate() + 1);
     tomorrow9AM.setHours(9, 0, 0, 0);
@@ -93,24 +95,50 @@ const LocalNotification: React.FC<ContainerProps> = ({ name }) => {
           title: "Morning Notification",
           body: "Good morning! Time to start your day.",
           id: 1,
-          schedule: { at: tomorrow9AM },
+          schedule: { at: oneMin },
         },
         {
           title: "Afternoon Notification",
           body: "Don't forget to take a break!",
           id: 2,
-          schedule: { at: dayAfterTomorrow2PM },
+          schedule: { at: nextHour },
         },
         {
           title: "Evening Notification",
-          body: "Time to wind down for the day.",
+          body: "Time to wind down for the day. after 30 secs.",
           id: 3,
           schedule: { at: new Date(Date.now() + 30000) }, // 30 seconds from now
         },
       ],
     });
   };
+  async function testNotifications() {
+    try {
+      const permStatus = await LocalNotifications.checkPermissions();
+      console.log("Permission status:", permStatus);
 
+      if (permStatus.display !== "granted") {
+        const reqResult = await LocalNotifications.requestPermissions();
+        console.log("Permission request result:", reqResult);
+      }
+
+      await LocalNotifications.schedule({
+        notifications: [
+          {
+            title: "Debug Notification",
+            body: "If you see this, notifications are working!",
+            id: 1,
+          },
+        ],
+      });
+
+      console.log("Notification scheduled");
+    } catch (error) {
+      console.error("Error in testNotifications:", error);
+    }
+  }
+
+  // testNotifications();
   return (
     <IonButton onClick={scheduleTestNotification}>
       Test Local Notification
