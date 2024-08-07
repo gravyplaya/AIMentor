@@ -16,11 +16,6 @@ import {
 } from "ionicons/icons";
 import SignUpSignIn from "./SignUpSignIn";
 import CurrentTime from "./Time";
-import Notifications, {
-  showNotification,
-  scheduleNotification,
-} from "./Notifications";
-import LocalNotification from "./LocalNotification";
 import showComponent1 from "../pages/Home";
 import showComponent2 from "../pages/Home";
 
@@ -90,11 +85,6 @@ const Header: React.FC<ContainerProps> = () => {
     });
   };
 
-  useEffect(() => {
-    // Start hourly notifications when component mounts
-    // scheduleHourlyNotifications('Hourly Reminder', 'This is your hourly notification!');
-  }, []);
-
   return (
     <IonHeader>
       <IonToolbar>
@@ -106,8 +96,7 @@ const Header: React.FC<ContainerProps> = () => {
         >
           {firstRun === null ? "START" : humanReadableDate}
         </IonButton>
-        <Notifications />
-        {/* <LocalNotification /> */}
+
         <div id="mobileNav">
           <IonButtons className="mobile-button-container">
             <IonButton onClick={showComponent1}>

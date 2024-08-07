@@ -464,7 +464,7 @@ const Day1: React.FC<{
               </IonButton>
             </div>
           </IonAccordion>
-          <IonAccordion>
+          <IonAccordion disabled={isAccordion5Disabled}>
             <IonItem slot="header">
               <IonLabel>
                 {" "}
@@ -496,7 +496,7 @@ const Day1: React.FC<{
           </IonCardContent>
         </IonCard>
         <IonAccordionGroup>
-          <IonAccordion value="accordian6" disabled={isAccordion6Disabled}>
+          <IonAccordion disabled={isAccordion6Disabled}>
             <IonItem slot="header">
               <IonLabel>
                 <IonGrid>
@@ -615,7 +615,7 @@ const Day1: React.FC<{
               </IonButton>
             </div>
           </IonAccordion>
-          <IonAccordion>
+          <IonAccordion disabled={isAccordion9Disabled}>
             <IonItem slot="header">
               <IonLabel>
                 <IonGrid>
@@ -765,7 +765,7 @@ const Day1: React.FC<{
               </IonButton>
             </div>
           </IonAccordion>
-          <IonAccordion>
+          <IonAccordion disabled={isAccordion13Disabled}>
             <IonItem slot="header">
               <IonLabel>
                 {" "}

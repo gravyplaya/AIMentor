@@ -13,6 +13,7 @@ import {
 import { IonReactRouter } from "@ionic/react-router";
 import VerticalTabs from "./components/VerticalTabs";
 import Home from "./pages/Home";
+import { firebaseService } from "./services/FirebaseService";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -43,15 +44,23 @@ import "@ionic/react/css/palettes/dark.always.css";
 
 /* Theme variables */
 import "./theme/variables.css";
+import { useEffect } from "react";
 
 setupIonicReact();
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <Home />
-    </IonReactRouter>
-  </IonApp>
-);
+const App: React.FC = () => {
+  useEffect(() => {
+    firebaseService.initializePushNotifications();
+    firebaseService.listenForMessages();
+  }, []);
+
+  return (
+    <IonApp>
+      <IonReactRouter>
+        <Home />
+      </IonReactRouter>
+    </IonApp>
+  );
+};
 
 export default App;
