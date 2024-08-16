@@ -24,16 +24,16 @@ export const showNotification = (
   }
 };
 
-export const scheduleNotification = async (
+export const scheduleNotification45 = async (
   title: string,
   body: string,
   delay: number = 1000
 ) => {
-  if (await requestNotificationPermission()) {
-    setTimeout(() => {
-      showNotification(title, { body });
-    }, delay);
-  }
+  // if (await requestNotificationPermission()) {
+  //   setTimeout(() => {
+  //     showNotification(title, { body });
+  //   }, delay);
+  // }
 };
 
 export const scheduleHourlyNotifications = async (
@@ -63,37 +63,53 @@ export const scheduleHourlyNotifications = async (
     const timeUntilNextHour = nextHour.getTime() - now.getTime();
     const timeUntilNextMin = nextMin.getTime() - now.getTime();
     // Schedule the first notification
-    setTimeout(() => {
-      showNotification(title, { body });
+    // setTimeout(() => {
+    //   showNotification(title, { body });
 
-      // Set up interval for subsequent hourly notifications
-      setInterval(() => {
-        showNotification(title, { body });
-      }, 60 * 60 * 1000); // 1 hour in milliseconds
-    }, timeUntilNextMin);
+    //   // Set up interval for subsequent hourly notifications
+    //   // setInterval(() => {
+    //   //   showNotification(title, { body });
+    //   // }, 60 * 60 * 1000); // 1 hour in milliseconds
+    // }, timeUntilNextMin);
   }
 };
+let scheduledNotifications: NodeJS.Timeout[] = [];
+
+function scheduleNotification(title: any, options: any, delay: any) {
+  const timerId = setTimeout(() => {
+    new Notification(title, options);
+  }, delay);
+
+  scheduledNotifications.push(timerId);
+}
+
+function clearAllScheduledNotifications() {
+  for (let i = 1; i < 99999; i++) {
+    clearTimeout(i);
+    clearInterval(i);
+  }
+}
 
 const Notifications: React.FC = () => {
   const handleScheduleNotification = async () => {
     showNotification("Tester title", { body: "This is just a test" });
-    await scheduleNotification(
-      "Test Notification",
-      "This is a 5 sec delayed notification",
-      5000
-    ); // 5 seconds delay
+    // await scheduleNotification(
+    //   "Test Notification",
+    //   "This is a 5 sec delayed notification",
+    //   5000
+    // ); // 5 seconds delay
   };
 
   useEffect(() => {
     // Start hourly notifications when component mounts
-    scheduleHourlyNotifications(
-      "Hourly Reminder",
-      "This is your hourly scheduled notification."
-    );
+    // scheduleHourlyNotifications(
+    //   "Hourly Reminder",
+    //   "This is your hourly scheduled notification."
+    // );
   }, []);
 
   return (
-    <IonButton onClick={handleScheduleNotification}>
+    <IonButton onClick={clearAllScheduledNotifications}>
       Schedule Notification
     </IonButton>
   );

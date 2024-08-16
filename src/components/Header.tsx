@@ -99,10 +99,10 @@ const Header: React.FC<ContainerProps> = () => {
 
         <div id="mobileNav">
           <IonButtons className="mobile-button-container">
-            <IonButton onClick={showComponent1}>
+            <IonButton href="/home" routerLink="/home">
               <IonIcon icon={personOutline} />
             </IonButton>
-            <IonButton onClick={showComponent2}>
+            <IonButton href="/daily" routerLink="/daily">
               <IonIcon icon={flashOutline} />
             </IonButton>
           </IonButtons>

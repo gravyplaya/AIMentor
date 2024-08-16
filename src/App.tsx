@@ -13,6 +13,8 @@ import {
 import { IonReactRouter } from "@ionic/react-router";
 import VerticalTabs from "./components/VerticalTabs";
 import Home from "./pages/Home";
+import HomeDaily from "./pages/HomeDaily";
+
 import { firebaseService } from "./services/FirebaseService";
 
 /* Core CSS required for Ionic components to work properly */
@@ -57,7 +59,15 @@ const App: React.FC = () => {
   return (
     <IonApp>
       <IonReactRouter>
-        <Home />
+        <Route exact path="/home">
+          <Home />
+        </Route>
+        <Route exact path="/daily">
+          <HomeDaily />
+        </Route>
+        <Route exact path="/">
+          <Redirect to="/home" />
+        </Route>
       </IonReactRouter>
     </IonApp>
   );

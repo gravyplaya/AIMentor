@@ -5,6 +5,10 @@ import { initializeApp } from "firebase/app";
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
 import { getAnalytics } from "firebase/analytics";
 
+import { Storage } from "@ionic/storage";
+const storage = new Storage();
+await storage.create();
+
 const firebaseConfig = {
   apiKey: "AIzaSyAWyb8vE2p7jHm7s502slDEOsqscaauL7s",
   authDomain: "aimentor-59b08.firebaseapp.com",
@@ -40,6 +44,7 @@ export class FirebaseService {
           "BGBVomoxGTR0Tu1aN5Z9yo4x6JdNRi4EyKLnpWoUvkcS_ySJ2VOIC8wOpkl9Js0XzlomvgKVlA4htAOrQn8yDL0",
       });
       console.log("FCM Token:", token);
+      await storage.set("token", token);
     }
   }
 

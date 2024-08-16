@@ -780,7 +780,7 @@ const Day3: React.FC<{
               </IonButton>
             </div>
           </IonAccordion>
-          <IonAccordion>
+          <IonAccordion disabled={isAccordion13Disabled}>
             <IonItem slot="header">
               <IonLabel>
                 {" "}

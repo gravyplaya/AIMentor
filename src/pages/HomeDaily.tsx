@@ -38,7 +38,7 @@ import {
 } from "ionicons/icons";
 import { useState } from "react";
 
-const Home: React.FC = () => {
+const HomeDaily: React.FC = () => {
   return (
     <IonPage>
       <IonContent fullscreen>
@@ -81,7 +81,7 @@ const Home: React.FC = () => {
               <IonRow>
                 <IonCol className=" border-top-gray border-bottom-gray ion-no-padding col2">
                   <div className="" style={{ height: "100%" }}>
-                    <ContentCol />
+                    <Daily />
                   </div>
                 </IonCol>
               </IonRow>
@@ -125,4 +125,5 @@ const Home: React.FC = () => {
     </IonPage>
   );
 };
-export default Home;
+// export { showComponent1, showComponent2 };
+export default HomeDaily;
